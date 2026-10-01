@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<!-- saved from url=(0084)file:///C:/Users/TS/OneDrive/Documents/data%20analist%20file/data%20analyst%202.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ExcelMind — Professional Analyst Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,650&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0a0b0d;--grid-line:rgba(255,255,255,.028);
+  --panel:#131519;--panel2:#181b20;
+  --line:#25292f;--line-soft:rgba(255,255,255,.05);
+  --text:#edf0f2;--muted:#8b93a1;--muted-dim:#5d6570;
+  --accent:#c9a15a;--accent-ink:#1b1206;--accent-soft:rgba(201,161,90,.12);
+  --accent2:#4f9d90;--accent2-soft:rgba(79,157,144,.14);
+  --good:#63b98a;--warn:#d3a24c;--bad:#d97b6c;
+  --shadow:0 26px 60px rgba(0,0,0,.5);--shadow-sm:0 10px 26px rgba(0,0,0,.28);
+  --glow:0 18px 46px rgba(201,161,90,.16);
+  --radius:14px;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;color:var(--text);font:13px/1.55 var(--sans);-webkit-font-smoothing:antialiased;
+  background:
+    linear-gradient(var(--grid-line) 1px,transparent 1px) 0 0/28px 28px,
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px) 0 0/28px 28px,
+    radial-gradient(1100px 520px at 14% -10%,rgba(201,161,90,.08),transparent 62%),
+    radial-gradient(900px 460px at 88% 8%,rgba(79,157,144,.07),transparent 60%),
+    radial-gradient(1200px 700px at 50% 110%,rgba(201,161,90,.045),transparent 65%),
+    var(--bg);
+  background-attachment:fixed;
+}
+::selection{background:rgba(201,161,90,.28);color:var(--text)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floatOrb{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-16px)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+.top{height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:rgba(9,10,12,.82);backdrop-filter:blur(10px);position:sticky;top:0;z-index:5;position:relative}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);opacity:.55}
+.brand{font-family:var(--serif);font-weight:560;font-size:19px;letter-spacing:.1px;display:flex;align-items:center;gap:10px}
+.brand::before{content:"";width:8px;height:8px;background:var(--accent);transform:rotate(45deg);flex:none;box-shadow:0 0 12px rgba(201,161,90,.6)}
+.brand span{color:var(--accent);font-style:italic;font-weight:450}
+.top small{color:var(--muted-dim);font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.top small::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--good);box-shadow:0 0 8px rgba(99,185,138,.7);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.home{min-height:calc(100vh - 68px);display:grid;place-items:center;padding:30px;position:relative;overflow:hidden}
+.home::before,.home::after{content:"";position:absolute;width:380px;height:380px;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:floatOrb 9s ease-in-out infinite}
+.home::before{background:rgba(201,161,90,.14);top:-120px;left:-80px}
+.home::after{background:rgba(79,157,144,.12);bottom:-140px;right:-100px;animation-delay:3s}
+.drop{width:min(720px,100%);padding:64px 56px;border:1px solid var(--line);border-radius:22px;text-align:center;background:linear-gradient(180deg,#171a1f 0%,#0e1013 100%);box-shadow:var(--shadow);position:relative;transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease;z-index:1;animation:fadeUp .6s ease both}
+.drop::before{content:"";position:absolute;inset:11px;border:1px dashed rgba(201,161,90,.32);border-radius:14px;pointer-events:none;transition:border-color .25s ease,opacity .25s ease}
+.drop::after{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(135deg,rgba(201,161,90,.5),transparent 30%,transparent 70%,rgba(79,157,144,.4));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.6;pointer-events:none}
+.drop:hover{box-shadow:var(--shadow),var(--glow)}
+.drop.drag{border-color:var(--accent);transform:scale(1.01)}
+.drop.drag::before{border-color:var(--accent);opacity:1}
+.icon{width:60px;height:60px;border-radius:15px;background:linear-gradient(150deg,var(--accent-soft),var(--panel2));border:1px solid rgba(201,161,90,.35);color:var(--accent);display:grid;place-items:center;margin:0 auto 22px;font-size:22px;box-shadow:0 10px 26px rgba(201,161,90,.14)}
+.drop h1{margin:0 0 12px;font-family:var(--serif);font-weight:560;font-size:34px;letter-spacing:.1px;background:linear-gradient(100deg,var(--text) 40%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.drop p{color:var(--muted);line-height:1.75;margin:0 auto 30px;max-width:520px;font-size:13.5px}
+.btn{border:1px solid var(--accent);border-radius:9px;padding:12px 22px;background:linear-gradient(135deg,#dab671,var(--accent) 55%,#b78b45);background-size:200% 100%;color:var(--accent-ink);font-weight:700;font-size:12.5px;letter-spacing:.15px;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease,background-position .4s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(201,161,90,.28);background-position:100% 0}
+.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn.secondary:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 8px 20px rgba(201,161,90,.12);transform:translateY(-1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+input[type=file]{display:none}
+
+.wrap{max-width:1500px;margin:auto;padding:32px}
+.wrap.hide{display:none!important}
+.wrap:not(.hide){animation:fadeUp .5s ease both}
+.head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid var(--line);position:relative}
+.head::after{content:"";position:absolute;left:0;bottom:-1px;width:120px;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+.head h1{margin:0;font-family:var(--serif);font-weight:560;font-size:28px;letter-spacing:.1px}
+.meta,.note{color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+#pptBtn{position:relative;overflow:hidden}
+#pptBtn::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 30%,rgba(201,161,90,.22) 50%,transparent 70%);background-size:220% 100%;animation:shimmer 3.2s ease-in-out infinite}
+
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:19px;box-shadow:var(--shadow-sm);position:relative;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm),0 0 0 1px rgba(201,161,90,.12);border-color:rgba(201,161,90,.3)}
+.card h2{font-family:var(--serif);font-weight:560}
+
+.kpi{overflow:hidden}
+.kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));transform:scaleX(0);transform-origin:0;transition:transform .35s ease}
+.kpi:hover::before{transform:scaleX(1)}
+.kpi .label{text-transform:uppercase;letter-spacing:1px;color:var(--muted-dim);font-size:9.5px;font-weight:700}
+.kpi .value{font-family:var(--serif);font-size:27px;font-weight:560;margin-top:9px;font-variant-numeric:tabular-nums;transition:color .2s ease}
+.kpi:hover .value{color:var(--accent)}
+.kpi .sub{font-size:11px;color:var(--muted);margin-top:5px}
+
+.section{margin-top:22px}
+.section h2{font-size:16px;margin:0 0 13px;font-weight:600;display:flex;align-items:center;gap:9px;letter-spacing:.1px}
+.section h2::before{content:"";width:6px;height:6px;background:var(--accent);transform:rotate(45deg);flex:none}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+.table{width:100%;border-collapse:collapse;min-width:720px;font-variant-numeric:tabular-nums}
+.table th,.table td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.table th{font-size:9.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);background:var(--panel2);position:sticky;top:0;font-weight:700}
+.table td{color:#dfe4ea}
+.table tbody tr{transition:background .15s ease}
+.table tbody tr:hover td{background:rgba(201,161,90,.055)}
+.scroll{overflow:auto}
+
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:4px 10px 4px 8px;font-size:10px;font-weight:700;letter-spacing:.1px}
+.pill::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}
+.good{background:rgba(99,185,138,.1);color:var(--good)}
+.warn{background:rgba(211,162,76,.1);color:var(--warn)}
+.bad{background:rgba(217,123,108,.1);color:var(--bad)}
+
+.insight{padding:12px 14px;margin:8px 0;border:1px solid var(--line-soft);border-left:2px solid var(--accent);background:linear-gradient(90deg,rgba(201,161,90,.06),var(--panel2) 40%);border-radius:0 10px 10px 0;line-height:1.65;transition:border-color .2s ease,background .2s ease}
+.insight:hover{background:linear-gradient(90deg,rgba(201,161,90,.1),var(--panel2) 55%)}
+.insight.warn{border-left-color:var(--warn)}
+.insight.bad{border-left-color:var(--bad)}
+
+.metric{font-family:var(--serif);font-size:21px;font-weight:560}
+.bar{height:6px;background:var(--panel2);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+.small{font-size:11px}
+.hide{display:none!important}
+.status{padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--muted);margin-bottom:16px;font-size:12px}
+.method{font-size:11.5px;color:var(--muted);line-height:1.75}
+.print-only{display:none}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.two,.three{grid-template-columns:1fr}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.head{flex-direction:column}.drop{padding:44px 24px}.wrap{padding:16px}.top{padding:0 18px}}
+@media print{body{background:#fff;color:#111}.top,.actions,.no-print,.home{display:none!important}.wrap{padding:0;max-width:none}.card{background:#fff;color:#111;border-color:#ddd;box-shadow:none;break-inside:avoid}.table th{background:#f2f2f2;color:#111}.table td,.table th{color:#111;border-color:#ddd}.note,.meta,.method{color:#555}.section{break-inside:avoid}.print-only{display:block}}
+
+/* Graph readability fix */
+.chart-wrap{overflow:visible}
+.graph-label-fix{max-width:100%;overflow:hidden}
+.graph-label-fix canvas{max-width:100%}
+@media(max-width:700px){
+  .chart-card{overflow:hidden}
+}
+
+.graph-canvas-wrap{position:relative;height:500px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs/dist/pptxgen.bundle.js" defer></script>
+<style>
+.graph-modal{position:fixed;inset:0;background:rgba(6,7,8,.78);backdrop-filter:blur(4px);z-index:50;display:grid;place-items:center;padding:20px;animation:fadeUp .2s ease both}
+.graph-box{width:min(980px,100%);max-height:92vh;overflow:auto;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 1px rgba(201,161,90,.06)}
+.graph-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+.graph-head h2{margin:0 0 6px;font-family:var(--serif);font-weight:560}
+.graph-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.graph-field{display:flex;flex-direction:column;gap:7px}
+.graph-field label{font-size:9.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:700}
+.graph-field select,.graph-field input{padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--text);font:13px var(--sans)}
+.graph-field select:focus,.graph-field input:focus{outline:none;border-color:var(--accent)}
+.graph-card{border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px;background:var(--panel2)}
+.graph-card-head{display:flex;justify-content:space-between;align-items:center}
+.graph-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.selected-graph{padding:10px 12px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;margin-top:8px;display:flex;justify-content:space-between;gap:10px}
+.graph-report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.graph-report-card{min-height:340px}
+.graph-canvas-wrap{height:290px;position:relative}
+  .exec-dashboard{margin-top:22px}
+  .exec-dashboard .dashboard-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:14px}
+  .exec-dashboard .dashboard-head h2{margin:0;font-family:var(--serif);font-size:20px;font-weight:560}
+  .exec-dashboard .dashboard-head p{margin:4px 0 0;color:var(--muted);font-size:11px}
+  .dashboard-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .dashboard-kpi{background:linear-gradient(155deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+  .dashboard-kpi::before{content:"";position:absolute;top:-30px;right:-30px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(201,161,90,.16),transparent 70%)}
+  .dashboard-kpi:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm),var(--glow);border-color:rgba(201,161,90,.35)}
+  .dashboard-kpi .dk-label{text-transform:uppercase;letter-spacing:.9px;font-size:9px;color:var(--muted-dim);font-weight:800}
+  .dashboard-kpi .dk-value{font-family:var(--serif);font-size:25px;margin-top:7px;font-weight:560;font-variant-numeric:tabular-nums;background:linear-gradient(100deg,var(--text),var(--accent) 120%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .dashboard-kpi .dk-sub{font-size:10.5px;color:var(--muted);margin-top:4px}
+  .dashboard-chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+  .dashboard-chart{min-width:0;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+  .dashboard-chart:hover{transform:translateY(-2px);border-color:rgba(201,161,90,.25);box-shadow:var(--shadow-sm),0 0 0 1px rgba(201,161,90,.08)}
+  .dashboard-chart.wide{grid-column:1/-1}
+  .dashboard-chart h3{font-family:var(--serif);font-size:15px;margin:0 0 3px;font-weight:560;display:flex;align-items:center;gap:8px}
+  .dashboard-chart h3::before{content:"";width:6px;height:6px;background:var(--accent2);transform:rotate(45deg);flex:none}
+  .dashboard-chart .chart-sub{font-size:10.5px;color:var(--muted);margin-bottom:10px}
+  .dashboard-chart .dash-canvas{height:300px;position:relative;overflow:hidden}
+  .dashboard-chart .dash-canvas.tall{height:360px}
+  /* Dashboard cards can be much wider than the chart viewBox. Stretch the
+     SVG viewport to the available card area instead of centering a small plot. */
+  .dashboard-chart .dash-canvas>svg{width:100%!important;height:100%!important;display:block}
+  .margin-summary{display:flex;align-items:center;justify-content:center;height:100%;min-height:260px;flex-direction:column;gap:6px}
+  .margin-summary .margin-value{font-family:var(--serif);font-size:44px;font-weight:560}
+  .margin-summary .margin-note{color:var(--muted);font-size:11px}
+  @media(max-width:1000px){.dashboard-kpis{grid-template-columns:repeat(2,1fr)}.dashboard-chart-grid{grid-template-columns:1fr}.dashboard-chart.wide{grid-column:auto}}
+  @media(max-width:600px){.dashboard-kpis{grid-template-columns:1fr}}
+.choice-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.choice{flex:1;min-width:180px;border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;background:linear-gradient(180deg,var(--panel2),var(--panel));transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease}
+.choice:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--glow)}
+.choice strong{display:block;margin-bottom:5px;font-family:var(--serif);font-weight:560;font-size:14.5px}
+.graph-note{font-size:11px;color:var(--muted);line-height:1.6}
+@media(max-width:760px){.graph-grid,.graph-report-grid{grid-template-columns:1fr}}
+.fast-mode{display:inline-flex;align-items:center;gap:7px;margin-left:8px;padding:4px 9px;border:1px solid rgba(99,185,138,.25);border-radius:99px;background:rgba(99,185,138,.08);color:var(--good);font-size:9.5px;font-weight:700;letter-spacing:.2px}.fast-mode::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;box-shadow:0 0 7px currentColor}
+</style></head>
+<body>
+<header class="top"><div class="brand">ExcelMind <span>Analyst</span></div><small>Runs entirely on your device</small></header>
+
+<main id="home" class="home">
+  <div id="drop" class="drop">
+    <div class="icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"></path><path d="M6.5 9.5 12 4l5.5 5.5"></path><path d="M4 16.5V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2.5"></path></svg>
+    </div>
+    <h1>Bring your dataset to life</h1>
+    <p>Drop in a spreadsheet and Ledgerline will profile, validate, and turn it into a fully-worked business report — statistics, correlations, trend forecasts, and clean, presentation-ready charts. Your file is analyzed locally through the Ledgerline Python backend.</p>
+    <button class="btn" onclick="fileInput.click()">Choose a file</button>
+    <input id="fileInput" type="file" accept=".xlsx,.xls,.csv">
+  </div>
+</main>
+
+<main id="report" class="wrap hide">
+ </main>
+
+<script>
+const $=id=>document.getElementById(id);
+const fileInput=$("fileInput"),drop=$("drop"),home=$("home"),report=$("report");
+let rows=[],headers=[],fileName="",dateCol=null,info={},selectedGraphs=[],graphCharts=[];
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const clean=s=>String(s??"").trim();
+const num=v=>{
+  if(v===null||v===undefined||clean(v)==="")return NaN;
+  if(typeof v==="number")return Number.isFinite(v)?v:NaN;
+  let s=String(v).trim(), neg=/^\(.*\)$/.test(s);
+  s=s.replace(/\u00a0/g,"").replace(/,/g,"").replace(/\s/g,"")
+   .replace(/^Rs\.?/i,"").replace(/^PKR/i,"").replace(/^USD/i,"")
+   .replace(/^GBP/i,"").replace(/^EUR/i,"").replace(/[$€£,%]/g,"").replace(/[()]/g,"");
+  const n=Number(s); if(!Number.isFinite(n))return NaN; return neg?-Math.abs(n):n;
+};
+const vals=h=>rows.map(r=>num(r[h])).filter(Number.isFinite);
+const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:NaN;
+const median=a=>{if(!a.length)return NaN;let x=[...a].sort((a,b)=>a-b),m=Math.floor(x.length/2);return x.length%2?x[m]:(x[m-1]+x[m])/2};
+const variance=a=>{if(a.length<2)return NaN;let m=mean(a);return a.reduce((s,x)=>s+(x-m)**2,0)/(a.length-1)};
+const std=a=>Number.isFinite(variance(a))?Math.sqrt(variance(a)):NaN;
+const percentile=(a,p)=>{if(!a.length)return NaN;let x=[...a].sort((a,b)=>a-b),i=(x.length-1)*p,k=Math.floor(i),d=i-k;return x[k+1]===undefined?x[k]:x[k]+d*(x[k+1]-x[k])};
+const pair=(h1,h2)=>rows.map(r=>[num(r[h1]),num(r[h2])]).filter(([a,b])=>Number.isFinite(a)&&Number.isFinite(b));
+const covPair=(h1,h2)=>{let p=pair(h1,h2);if(p.length<2)return NaN;let aa=p.map(x=>x[0]),bb=p.map(x=>x[1]),ma=mean(aa),mb=mean(bb);return aa.reduce((s,x,i)=>s+(x-ma)*(bb[i]-mb),0)/(p.length-1)};
+const corrPair=(h1,h2)=>{let p=pair(h1,h2);if(p.length<2)return NaN;let aa=p.map(x=>x[0]),bb=p.map(x=>x[1]),c=covPair(h1,h2),d=std(aa)*std(bb);return Number.isFinite(c)&&d?c/d:NaN};
+const fmt=n=>{if(!Number.isFinite(n))return "—";let a=Math.abs(n);if(a>=1e9)return (n/1e9).toFixed(2)+"B";if(a>=1e6)return (n/1e6).toFixed(2)+"M";return n.toLocaleString(undefined,{maximumFractionDigits:2})};
+const humanize=h=>clean(h).replace(/[_-]+/g," ").replace(/\bUSD\b/ig,"USD").replace(/\bPKR\b/ig,"PKR").replace(/\bEUR\b/ig,"EUR").replace(/\bGBP\b/ig,"GBP").replace(/\bGWh\b/ig,"GWh").replace(/\b000s\b/ig,"thousands").replace(/\bm\b/ig,"M").replace(/\s+/g," ").trim().replace(/\b\w/g,c=>c.toUpperCase());
+const unitOf=h=>{
+  // BUGFIX: "_" is a \w char, so \b(usd)\b never matched inside "Revenue_USD" or
+  // "Unit_Price_USD" (no boundary between "_" and "usd") — those columns silently
+  // rendered with no currency symbol at all. Normalize separators to spaces first.
+  const s=clean(h).toLowerCase().replace(/[_\-]+/g," ");
+  const isM=/\b(millions?|m)\b/.test(s), isK=/\b(000s|thousands?|k)\b/.test(s);
+  const suf=isM?"M":isK?"K":"";
+  if(/\b(usd|us\$|dollar|dollars)\b/.test(s))return{symbol:"$",suffix:suf};
+  if(/\b(pkr|rs|rupee|rupees)\b/.test(s))return{symbol:"Rs ",suffix:suf};
+  if(/\b(eur|euro|euros)\b/.test(s))return{symbol:"€",suffix:suf};
+  if(/\b(gbp|pound|pounds)\b/.test(s))return{symbol:"£",suffix:suf};
+  if(isK)return{symbol:"",suffix:"K"};
+  if(/\bgwh\b/.test(s))return{symbol:"",suffix:" GWh"};
+  if(/%|percent|margin|rate|ratio/.test(s))return{symbol:"",suffix:"%"};
+  if(isM)return{symbol:"",suffix:"M"};
+  return{symbol:"",suffix:""};
+};
+const money=(n,h)=>{if(!Number.isFinite(n))return "—";let u=unitOf(h||info?.biz?.revenue||"");return `${u.symbol}${fmt(n)}${u.suffix}`;};
+const displayValue=(n,h)=>{if(!Number.isFinite(n))return "—";let u=unitOf(h);if(u.symbol||u.suffix)return `${u.symbol}${fmt(n)}${u.suffix}`;return fmt(n)};
+const pct=n=>Number.isFinite(n)?(n*100).toFixed(1)+"%":"—";
+const typeOf=h=>{
+  let a=rows.map(r=>clean(r[h])).filter(Boolean), n=a.filter(v=>Number.isFinite(num(v))).length;
+  if(!a.length)return"Empty";
+  let lower=h.toLowerCase().replace(/[_-]+/g," ").trim();
+  const idName=/(^|\s)(id|identifier|code|no|number|invoice|order|transaction|receipt|sku|customer id|order id|transaction id)(\s|$)/i.test(lower);
+  if(idName)return"Identifier";
+  let d=a.filter(v=>parsePeriod(v)!==null).length;
+  if(d/a.length>=.8)return"Date";
+  if(n/a.length>=.9)return"Numeric";
+  return"Categorical";
+};
+const numericCols=()=>headers.filter(h=>typeOf(h)==="Numeric");
+const catCols=()=>headers.filter(h=>typeOf(h)==="Categorical");
+const idCols=()=>headers.filter(h=>typeOf(h)==="Identifier");
+const parsePeriod=v=>{
+  const s=clean(v);
+  if(!s)return null;
+  let m=s.match(/^Q([1-4])[\s._-]*(\d{4})$/i)||s.match(/^(\d{4})[\s._-]*Q([1-4])$/i);
+  if(m){let q=s.match(/^Q/i)?+m[1]:+m[2], y=s.match(/^Q/i)?+m[2]:+m[1];return new Date(Date.UTC(y,(q-1)*3,1));}
+  // ISO week values such as 2025-W08.
+  m=s.match(/^(\d{4})[\s._-]*W(\d{1,2})$/i);
+  if(m){
+    const y=+m[1],w=+m[2], jan4=new Date(Date.UTC(y,0,4));
+    const day=jan4.getUTCDay()||7;
+    const monday=new Date(jan4.getTime()+(1-day)*86400000+(w-1)*7*86400000);
+    return monday;
+  }
+  m=s.match(/^(\d{4})[\s._-]*(\d{1,2})$/);
+  if(m&&+m[2]>=1&&+m[2]<=12)return new Date(Date.UTC(+m[1],+m[2]-1,1));
+  // CSVs commonly contain DD/MM/YYYY.  Native JS Date.parse treats values
+  // such as 13/01/2016 as invalid, so parse slash-separated dates explicitly.
+  m=s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+  if(m){
+    const a=+m[1],b=+m[2],y=+m[3];
+    let day,month;
+    if(a>12){day=a;month=b;} else if(b>12){month=a;day=b;} else {day=a;month=b;}
+    const d=new Date(Date.UTC(y,month-1,day));
+    if(d.getUTCFullYear()===y&&d.getUTCMonth()===month-1&&d.getUTCDate()===day)return d;
+  }
+  const d=new Date(s); return Number.isFinite(d.getTime())?d:null;
+};
+const dateColumn=()=>{
+  let exact=headers.find(h=>typeOf(h)==="Date"); if(exact)return exact;
+  return headers.find(h=>/(date|time|timestamp|period|quarter|month|year|week)/i.test(h)&&rows.filter(r=>parsePeriod(r[h])).length/Math.max(1,rows.length)>=.7)||null;
+};
+const topCats=(h,limit=8)=>{let m={};rows.forEach(r=>{let v=clean(r[h]);if(v)m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,limit)};
+const sumCol=h=>vals(h).reduce((a,b)=>a+b,0);
+const duplicateInfo=()=>{let seen=new Map(),ids={};rows.forEach((r,i)=>{let sig=headers.map(h=>clean(r[h])).join("\u241f");seen.set(sig,(seen.get(sig)||0)+1)});return{duplicateRows:[...seen.values()].filter(x=>x>1).reduce((s,x)=>s+x-1,0),duplicateGroups:[...seen.values()].filter(x=>x>1).length}};
+const dataIssues=()=>{
+ let missing=0,invalidDates=0,negativeQty=0,negativeMoney=0,whitespace=0,emptyRows=0;
+ rows.forEach(r=>{
+   if(headers.every(h=>clean(r[h])===""))emptyRows++;
+   if(!headers.every(h=>clean(r[h])==="")){
+     headers.forEach(h=>{let raw=String(r[h]??"");if(raw!==raw.trim())whitespace++;if(clean(raw)==="")missing++});
+   }
+ });
+ if(dateCol) rows.forEach(r=>{
+  let v=clean(r[dateCol]);
+  if(v&&!parsePeriod(v))invalidDates++;
+});
+ headers.forEach(h=>{let l=h.toLowerCase();if(/qty|quantity|units|count/.test(l))negativeQty+=vals(h).filter(x=>x<0).length;if(/price|sales|revenue|amount|cost|profit/.test(l))negativeMoney+=vals(h).filter(x=>x<0).length});
+ let dup=duplicateInfo();
+ return{missing,invalidDates,negativeQty,negativeMoney,whitespace,emptyRows,timeChangeWarnings:timeChangeWarnings(),...dup};
+};
+
+const timeChangeWarnings=()=>{
+  let out=[];
+  const cols=numericCols().filter(h=>typeOf(h)==="Numeric");
+  cols.forEach(h=>{
+    // BUGFIX: a rate/percentage column (e.g. Profit_Margin_%) is already a ratio, so
+    // running it through the relative-change formula (cur/prev-1) produces distorted,
+    // misleading swings -- 15% -> -5% is a 20-point swing, not "-133%". Use the plain
+    // percentage-point difference for rate columns instead.
+    const isRate=/%|percent|margin|\brate\b|ratio/i.test(clean(h).replace(/[_\-]+/g," "));
+    let seq=rows.map((r,i)=>({i,v:num(r[h]),d:dateCol?parsePeriod(r[dateCol]):null}))
+      .filter(x=>Number.isFinite(x.v));
+    if(seq.length<2)return;
+    if(dateCol)seq.sort((a,b)=>(a.d?.getTime()??a.i)-(b.d?.getTime()??b.i));
+    for(let i=1;i<seq.length;i++){
+      const prev=seq[i-1].v, cur=seq[i].v;
+      if(isRate){
+        const points=cur-prev;
+        if(Math.abs(points)>15){
+          out.push({column:h,from:prev,to:cur,change:null,points,isRate:true,fromIndex:seq[i-1].i,toIndex:seq[i].i,
+            period:dateCol?clean(rows[seq[i].i][dateCol]):`row ${seq[i].i+1}`});
+        }
+        continue;
+      }
+      if(Math.abs(prev)<1e-12)continue;
+      const change=cur/prev-1;
+      if(Math.abs(change)>0.70){
+        out.push({column:h,from:prev,to:cur,change,points:null,isRate:false,fromIndex:seq[i-1].i,toIndex:seq[i].i,
+          period:dateCol?clean(rows[seq[i].i][dateCol]):`row ${seq[i].i+1}`});
+      }
+    }
+  });
+  return out;
+};
+const iqrStats=h=>{let a=vals(h),q1=percentile(a,.25),q3=percentile(a,.75),iqr=q3-q1,lo=q1-1.5*iqr,hi=q3+1.5*iqr,out=a.filter(x=>x<lo||x>hi);return{q1,q3,iqr,lo,hi,out}};
+const businessCandidates=()=>({
+ revenue:headers.find(h=>/sales|revenue|amount|total|turnover/i.test(h)&&typeOf(h)==="Numeric"),
+ quantity:headers.find(h=>/qty|quantity|units|volume/i.test(h)&&typeOf(h)==="Numeric"),
+ price:headers.find(h=>/price|unit.?price|rate/i.test(h)&&typeOf(h)==="Numeric"),
+ profit:headers.find(h=>/profit|margin/i.test(h)&&typeOf(h)==="Numeric"),
+ category:headers.find(h=>/category|department|segment|type/i.test(h)&&typeOf(h)==="Categorical"),
+ product:headers.find(h=>/product|item|sku|description/i.test(h)&&typeOf(h)!=="Identifier"),
+ city:headers.find(h=>/city|region|branch|area|location/i.test(h)&&typeOf(h)==="Categorical"),
+ payment:headers.find(h=>/payment|method|channel/i.test(h)&&typeOf(h)==="Categorical"),
+ salesperson:headers.find(h=>/sales.?person|sales.?rep|representative|employee|agent|seller/i.test(h)&&typeOf(h)==="Categorical"),
+ orderId:headers.find(h=>/order.?id|order.?number|invoice|transaction.?id|receipt/i.test(h)&&typeOf(h)!=="Numeric")
+});
+function groupMetrics(h,metric){
+ let m=new Map();rows.forEach(r=>{let k=clean(r[h]);if(!k)return;let v=metric?num(r[metric]):1;if(!Number.isFinite(v))return;if(!m.has(k))m.set(k,{count:0,total:0});let x=m.get(k);x.count++;x.total+=v});
+ return [...m.entries()].map(([key,x])=>({key,...x,avg:x.total/x.count})).sort((a,b)=>b.total-a.total);
+}
+function dateSeries(){
+ if(!dateCol)return null;
+ let rev=info.biz.revenue, q=info.biz.quantity, m=new Map();
+ rows.forEach(r=>{let d=new Date(r[dateCol]);if(!Number.isFinite(d.getTime()))return;let k=d.toISOString().slice(0,10);if(!m.has(k))m.set(k,{sales:0,qty:0,orders:0});let x=m.get(k);x.orders++;if(rev){let v=num(r[rev]);if(Number.isFinite(v))x.sales+=v}if(q){let v=num(r[q]);if(Number.isFinite(v))x.qty+=v}});
+ return [...m.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
+}
+function scoreQuality(issues){
+ let q=qualityBreakdown();
+ return q.overall*100;
+}
+function renderTable(headers2,body){return '<div class="scroll"><table class="table"><thead><tr>'+headers2.map(h=>'<th>'+esc(h)+'</th>').join("")+'</tr></thead><tbody>'+body.join("")+'</tbody></table></div>'}
+function insight(s,kind=""){return '<div class="insight">'+(kind?'<span class="pill '+kind+'">'+kind.toUpperCase()+'</span> ':"")+s+'</div>'}
+
+
+const skewness=a=>{if(a.length<3)return NaN;let m=mean(a),s=std(a);if(!s)return 0;return a.length/((a.length-1)*(a.length-2))*a.reduce((z,x)=>z+((x-m)/s)**3,0)};
+const kurtosis=a=>{if(a.length<4)return NaN;let m=mean(a),s=std(a);if(!s)return 0;let n=a.length,g=n*(n+1)/((n-1)*(n-2)*(n-3))*a.reduce((z,x)=>z+((x-m)/s)**4,0)-3*(n-1)**2/((n-2)*(n-3));return g};
+const cv=a=>{let m=mean(a);return m?std(a)/Math.abs(m):NaN};
+const ci95=a=>{if(a.length<2)return null;let m=mean(a),se=std(a)/Math.sqrt(a.length),z=1.96;return[m-z*se,m+z*se]};
+const normalizeText=v=>clean(v).replace(/\s+/g," ");
+const normalizedCategoryMap=h=>{let map=new Map();rows.forEach(r=>{let raw=normalizeText(r[h]);let key=raw.toLowerCase();if(raw&&!map.has(key))map.set(key,new Set());if(raw)map.get(key).add(raw)});return [...map.entries()].filter(([,s])=>s.size>1)};
+const qualityBreakdown=()=>{
+  let total=rows.length*headers.length||1, issue=info.issues;
+  let completeness=Math.max(0,1-issue.missing/total);
+  let validity=Math.max(0,1-(issue.invalidDates+issue.negativeQty+issue.negativeMoney)/Math.max(1,rows.length));
+  let consistency=Math.max(0,1-issue.whitespace/total-Math.min(0.5,(issue.timeChangeWarnings?.length||0)*0.10));
+  let uniqueness=Math.max(0,1-issue.duplicateRows/Math.max(1,rows.length));
+  return {completeness,validity,consistency,uniqueness,overall:(completeness+validity+consistency+uniqueness)/4};
+};
+const groupContribution=(h,metric)=>{
+  if(!h||!metric)return[];
+  let total=sumCol(metric);
+  return groupMetrics(h,metric).map(x=>({...x,share:total?x.total/total:NaN}));
+};
+const compareTopBottom=(h,metric)=>{
+  let g=groupMetrics(h,metric);return g.length>1?{top:g[0],bottom:g[g.length-1]}:null;
+};
+const rootCauseSummary=()=>{
+  let b=info.biz, out=[];
+  if(b.revenue&&b.category){let g=groupContribution(b.category,b.revenue);if(g.length){let top=g[0];out.push(`${esc(top.key)} contributes ${pct(top.share)} of total ${humanize(b.revenue)} and is the largest detected segment.`)}}
+  if(b.revenue&&b.city){let g=groupContribution(b.city,b.revenue);if(g.length){let top=g[0];out.push(`${esc(top.key)} is the highest-revenue location at ${money(top.total)}.`)}}
+  if(b.revenue&&b.product){let g=groupContribution(b.product,b.revenue);if(g.length){let top=g[0];out.push(`${esc(top.key)} is the highest-revenue product/item at ${money(top.total)}.`)}}
+  if(b.quantity&&b.product&&b.revenue){
+    let g=groupMetrics(b.product,b.revenue), q=groupMetrics(b.product,b.quantity);
+    let qm=new Map(q.map(x=>[x.key,x.total]));
+    let candidates=g.map(x=>({...x,qty:qm.get(x.key)||0,revPerUnit:x.total/(qm.get(x.key)||NaN)})).filter(x=>Number.isFinite(x.revPerUnit));
+    if(candidates.length){let hi=[...candidates].sort((a,b)=>b.revPerUnit-a.revPerUnit)[0], lo=[...candidates].sort((a,b)=>a.revPerUnit-b.revPerUnit)[0];out.push(`Revenue per unit is highest for ${esc(hi.key)} (${money(hi.revPerUnit)}) and lowest for ${esc(lo.key)} (${money(lo.revPerUnit)}), based on available quantity and revenue fields.`)}
+  }
+  return out;
+};
+
+
+/* ===== Professional Intelligence Layer ===== */
+const semanticTokens={
+ revenue:/sales|revenue|net.?amount|gross.?sales|turnover|total.?amount|invoice.?amount|order.?value|gmv/i,
+ quantity:/qty|quantity|units|unit.?sold|volume|count.?sold|production|produced|deliver(y|ies)|deployments?/i,
+ price:/unit.?price|price|rate|selling.?price|asp|average.?price/i,
+ cost:/cogs|cost|cost.?of.?goods|expense|purchase.?cost/i,
+ profit:/profit|gross.?profit|net.?profit|margin|ebitda/i,
+ product:/product|item|sku|stock.?item|article|description/i,
+ category:/category|department|segment|class|type|family|group/i,
+ geo:/city|region|state|province|branch|area|location|territory|zone/i,
+ payment:/payment|method|channel|tender/i,
+ customer:/customer|client|buyer|account|member/i
+};
+const semanticRole=h=>{let t=h.toLowerCase();for(const [role,re] of Object.entries(semanticTokens))if(re.test(t))return role;return typeOf(h).toLowerCase()};
+const enhancedBusinessCandidates=()=>{
+ let b=businessCandidates();
+ const pick=(re,types)=>headers.find(h=>re.test(h)&&types.includes(typeOf(h)));
+ b.revenue=b.revenue||pick(semanticTokens.revenue,["Numeric"]);
+ // Financial market datasets may have no revenue/sales column. Use Close or
+ // another price-like numeric field as the primary time-series metric.
+ if(!b.revenue){
+   b.revenue=headers.find(h=>/^(close|closing.?price|adjusted.?close)$/i.test(h)&&typeOf(h)==="Numeric")
+     ||headers.find(h=>/price|close/i.test(h)&&typeOf(h)==="Numeric")
+     ||headers.find(h=>typeOf(h)==="Numeric");
+ }
+ b.quantity=b.quantity||pick(semanticTokens.quantity,["Numeric"]);
+ b.price=b.price||pick(semanticTokens.price,["Numeric"]);
+ b.cost=b.cost||pick(semanticTokens.cost,["Numeric"]);
+ b.profit=b.profit||pick(semanticTokens.profit,["Numeric"]);
+ b.category=b.category||pick(semanticTokens.category,["Categorical"]);
+ b.product=b.product||headers.find(h=>semanticTokens.product.test(h)&&!/(production|produced|deliver|delivery|deployment|units?)/i.test(h)&&["Categorical","Identifier"].includes(typeOf(h)));
+ b.city=b.city||pick(semanticTokens.geo,["Categorical"]);
+ b.payment=b.payment||pick(semanticTokens.payment,["Categorical"]);
+ b.customer=b.customer||pick(semanticTokens.customer,["Categorical","Identifier"]);
+ return b;
+};
+const localGroupCount=(dimension,metric)=>{if(!dimension)return 0;const keys=new Set();rows.forEach(r=>{const k=clean(r[dimension]),v=metric?num(r[metric]):1;if(k&&(!metric||Number.isFinite(v)))keys.add(k)});return keys.size;};
+const buildCapabilities=()=>{
+ const b=info.biz||{},rev=b.revenue||info.pythonAnalysis?.primary_metric,profit=b.profit,cost=b.cost;
+ const revenueUsable=!!rev&&vals(rev).length>0,profitUsable=!!profit&&vals(profit).length>0,costUsable=!!cost&&vals(cost).length>0;
+ const periodCount=metric=>{
+   if(!metric||!dateCol)return 0;
+   return periodSeriesForMetric(metric).length;
+ };
+ const productGroups=localGroupCount(b.product,rev),categoryGroups=localGroupCount(b.category,rev),cityGroups=localGroupCount(b.city,rev),salesGroups=localGroupCount(b.salesperson,rev),paymentGroups=localGroupCount(b.payment,rev);
+ const numeric=numericCols().filter(h=>vals(h).length>=3);
+ return {dashboard:true,revenue_kpi:revenueUsable,profit_kpi:profitUsable||(revenueUsable&&costUsable),avg_order_value:revenueUsable,monthly_revenue_trend:!!(dateCol&&revenueUsable&&periodCount(rev)>=2),monthly_profit_trend:!!(dateCol&&(profitUsable||costUsable)&&periodCount(profit||cost)>=2),category_performance:!!(categoryGroups&&revenueUsable),city_performance:!!(cityGroups&&revenueUsable),top_10_products:!!(productGroups>=10&&revenueUsable),salesperson_performance:!!(salesGroups&&revenueUsable),payment_method_mix:!!(paymentGroups&&revenueUsable),profit_margin:!!(revenueUsable&&(profitUsable||costUsable)),descriptive_statistics:numeric.length>0,correlation:numeric.length>=2,covariance:numeric.length>=2,time_series:!!(dateCol&&revenueUsable&&periodCount(rev)>=2),outlier_review:numeric.length>0,business_performance:!!(revenueUsable&&[categoryGroups,cityGroups,productGroups,paymentGroups].some(x=>x>0)),cross_dimension:!!(revenueUsable&&[categoryGroups,cityGroups,productGroups,paymentGroups].filter(x=>x>0).length>=2),what_if:revenueUsable,trend_forecast:!!(dateCol&&revenueUsable&&periodCount(rev)>=2),product_groups:productGroups};
+};
+const cap=key=>!!(info.capabilities?.[key]);
+const section=(key,title,body)=>cap(key)?`<div class="section"><h2>${title}</h2>${body}</div>`:"";
+
+const linearRegression=(a)=>{let n=a.length;if(n<2)return null;let sx=0,sy=0,sxx=0,sxy=0;for(let i=0;i<n;i++){sx+=i;sy+=a[i];sxx+=i*i;sxy+=i*a[i]}let den=n*sxx-sx*sx;if(!den)return null;let slope=(n*sxy-sx*sy)/den,intercept=(sy-slope*sx)/n,ym=sy/n;let ssTot=a.reduce((z,y)=>z+(y-ym)**2,0),ssRes=a.reduce((z,y,i)=>z+(y-(intercept+slope*i))**2,0);return{n,slope,intercept,r2:ssTot?1-ssRes/ssTot:1};};
+const periodKeyFromDate=(d,gran)=>{
+  if(!d)return null;
+  if(gran==="quarter"){
+    const qn=Math.floor(d.getUTCMonth()/3)+1;
+    return `${d.getUTCFullYear()}-Q${qn}`;
+  }
+  if(gran==="month")return d.toISOString().slice(0,7);
+  if(gran==="week"){
+    const x=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()));
+    const day=x.getUTCDay()||7;
+    x.setUTCDate(x.getUTCDate()+4-day);
+    const year=x.getUTCFullYear();
+    const first=new Date(Date.UTC(year,0,1));
+    const week=Math.ceil((((x-first)/86400000)+1)/7);
+    return `${year}-W${String(week).padStart(2,"0")}`;
+  }
+  if(gran==="year")return String(d.getUTCFullYear());
+  return d.toISOString().slice(0,10);
+};
+
+const detectPeriodGranularity=()=>{
+  if(!dateCol)return null;
+  const parsed=rows.map(r=>parsePeriod(r[dateCol])).filter(Boolean).sort((a,b)=>a-b);
+  if(!parsed.length)return null;
+
+  const samples=rows.map(r=>clean(r[dateCol])).filter(Boolean);
+  if(samples.some(v=>/^Q[1-4][\s._-]*\d{4}$/i.test(v)||/^\d{4}[\s._-]*Q[1-4]$/i.test(v)))return "quarter";
+  if(samples.some(v=>/^\d{4}[\s._-]*W\d{1,2}$/i.test(v)))return "week";
+
+  const unique=[...new Set(parsed.map(d=>d.toISOString().slice(0,10)))].sort();
+  const spanDays=unique.length>1?(new Date(unique.at(-1))-new Date(unique[0]))/86400000:0;
+
+  // User-defined professional reporting rule:
+  // multi-year -> quarter, <= 1 year -> month, <= 1 month -> week.
+  if(spanDays>366)return "quarter";
+  if(spanDays<=31)return "week";
+
+  // If the source itself is monthly observations, report them at weekly grain.
+  const monthlyLike=samples.length && samples.every(v=>/^\d{4}[\s._-]*\d{1,2}$/.test(v));
+  if(monthlyLike)return "week";
+
+  return "month";
+};
+
+const periodSeriesForMetric=(metric,unit)=>{
+ if(!dateCol||!metric)return[];
+ const gran=unit||detectPeriodGranularity()||"date",m=new Map();
+ const priceLike=/(^|[ _-])(open|high|low|close|price|rate|index|nav|share|stock)([ _-]|$)/i.test(String(metric));
+ rows.forEach(r=>{
+   const d=parsePeriod(r[dateCol]); if(!d)return;
+   const k=periodKeyFromDate(d,gran);
+   if(!k)return;
+   const v=num(r[metric]); if(!Number.isFinite(v))return;
+   if(!m.has(k))m.set(k,{sales:0,qty:0,orders:0,lastTime:-Infinity,lastValue:v});
+   const x=m.get(k);x.orders++;
+   if(priceLike){if(d.getTime()>=x.lastTime){x.lastTime=d.getTime();x.lastValue=v;}}
+   else x.sales+=v;
+ });
+ return [...m.entries()].map(([k,x])=>[k,{sales:priceLike?x.lastValue:x.sales,qty:x.qty,orders:x.orders}]).sort((a,b)=>(parsePeriod(a[0])?.getTime()??0)-(parsePeriod(b[0])?.getTime()??0));
+};
+
+const periodSeries=(unit)=>{
+ if(!dateCol)return[];
+ let b=info.biz,rev=b.revenue,q=b.quantity,m=new Map();
+ const gran=unit||detectPeriodGranularity()||"date";
+ rows.forEach(r=>{
+   const d=parsePeriod(r[dateCol]); if(!d)return;
+   const k=periodKeyFromDate(d,gran);
+   if(!k)return;
+   if(!m.has(k))m.set(k,{sales:0,qty:0,orders:0});
+   let x=m.get(k);x.orders++;
+   if(rev){let v=num(r[rev]);if(Number.isFinite(v))x.sales+=v}
+   if(q){let v=num(r[q]);if(Number.isFinite(v))x.qty+=v}
+ });
+ return [...m.entries()].sort((a,b)=>(parsePeriod(a[0])?.getTime()??0)-(parsePeriod(b[0])?.getTime()??0));
+};
+
+const trendIntelligence=()=>{
+ const b=info.biz||{};
+ const isStock=(info.datasetType?.type||info.pythonAnalysis?.dataset_type?.type)==="Stock Market / Financial Time Series";
+ const stockClose=headers.find(h=>isStock && /\b(close|closing)(?:\s+price)?\b/i.test(String(h)) && Number.isFinite(num(rows[0]?.[h])));
+ const metric=isStock?(stockClose||b.primary_metric):((b.revenue||b.primary_metric));
+ let gran=detectPeriodGranularity(),s=periodSeriesForMetric(metric,gran),valsS=s.map(x=>x[1].sales);
+ if(!metric||!s.length||valsS.length<2)return null;
+ let reg=linearRegression(valsS),first=valsS[0],last=valsS[valsS.length-1],growth=first?last/first-1:NaN;
+ let changes=[];
+ for(let i=1;i<s.length;i++)changes.push({period:s[i][0],change:valsS[i-1]?valsS[i]/valsS[i-1]-1:NaN});
+ let best=changes.filter(x=>Number.isFinite(x.change)).sort((a,b)=>b.change-a.change)[0];
+ let worst=changes.filter(x=>Number.isFinite(x.change)).sort((a,b)=>a.change-b.change)[0];
+ let forecast=[];
+ if(reg&&s.length>=4){
+   for(let i=1;i<=3;i++)forecast.push(Math.max(0,reg.intercept+reg.slope*(valsS.length-1+i)));
+ }
+ let trend=reg?(reg.slope>0?"Increasing":reg.slope<0?"Decreasing":"Stable"):"Insufficient data";
+ return{s,metric,metricLabel:humanize(metric),granularity:gran,reg,growth,best,worst,forecast,trend,canForecast:s.length>=4};
+};
+// Matches the client-side primary trend metric to the Python backend's advanced forecast
+// (Linear Trend, Holt's Exponential Smoothing, ARIMA(1,1,1)) computed in trend_specs.
+const pythonTrendFor=(metric)=>{
+ if(!metric)return null;
+ const specs=info.pythonTrendSpecs||[];
+ return specs.find(s=>s.metric===metric)||specs.find(s=>s.metric_label===humanize(metric))||null;
+};
+const rootCauseEngine=()=>{
+ let b=info.biz,out=[]; if(!b.revenue||!dateCol)return out;
+ const gran=detectPeriodGranularity()||"date";
+ const ts=periodSeries(gran);
+ if(ts.length>=2){
+   const prevKey=ts[ts.length-2][0],curKey=ts[ts.length-1][0];
+   const dims=[b.category,b.product,b.city,b.payment].filter(Boolean);
+   dims.forEach(d=>{
+     let groups=new Map();
+     rows.forEach(r=>{
+       const k=clean(r[d]),dt=parsePeriod(r[dateCol]); if(!k||!dt)return;
+       const pk=periodKeyFromDate(dt,gran); if(pk!==prevKey&&pk!==curKey)return;
+       if(!groups.has(k))groups.set(k,{prev:0,cur:0});
+       const g=groups.get(k),v=num(r[b.revenue]); if(!Number.isFinite(v))return;
+       if(pk===curKey)g.cur+=v; else g.prev+=v;
+     });
+     let ranked=[...groups.entries()].map(([key,g])=>({key,delta:g.cur-g.prev,prev:g.prev,cur:g.cur}))
+       .sort((a,z)=>Math.abs(z.delta)-Math.abs(a.delta));
+     if(ranked[0])out.push({
+       text:`${esc(humanize(d))} driver: <b>${esc(ranked[0].key)}</b> contributed ${money(ranked[0].delta)} to the latest ${gran} revenue change.`,
+       dimension:d,item:ranked[0]
+     });
+   });
+ }
+ return out;
+};
+
+const crossDimensionAnalysis=()=>{
+ let b=info.biz,dims=[b.category,b.city,b.payment,b.product].filter(Boolean).slice(0,4),metric=b.revenue; if(!metric||dims.length<2)return[];let out=[];
+ for(let i=0;i<dims.length;i++)for(let j=i+1;j<dims.length;j++){
+  let a=dims[i],c=dims[j],m=new Map();rows.forEach(r=>{let x=clean(r[a]),y=clean(r[c]),v=num(r[metric]);if(!x||!y||!Number.isFinite(v))return;let k=x+"|||"+y;m.set(k,(m.get(k)||0)+v)});
+  let arr=[...m.entries()].map(([k,v])=>{let z=k.split("|||");return{a:z[0],b:z[1],v}}).sort((x,y)=>y.v-x.v);if(arr[0])out.push({a,b:c,top:arr[0],share:sumCol(metric)?arr[0].v/sumCol(metric):NaN});
+ }
+ return out.sort((a,b)=>b.top.v-a.top.v).slice(0,8);
+};
+const anomalyEngine=()=>{
+ let t=trendIntelligence();if(!t||t.s.length<4)return[];let a=t.s.map(x=>x[1].sales),m=mean(a),sd=std(a);if(!sd)return[];return t.s.map((x,i)=>({period:x[0],sales:x[1].sales,z:(x[1].sales-m)/sd})).filter(x=>Math.abs(x.z)>=2).sort((a,b)=>Math.abs(b.z)-Math.abs(a.z));
+};
+const safeCleaningPlan=()=>{
+ let plan=[];if(info.issues.emptyRows)plan.push({type:"safe",label:"Remove completely empty rows",count:info.issues.emptyRows});if(info.issues.whitespace)plan.push({type:"safe",label:"Trim leading/trailing whitespace",count:info.issues.whitespace});if(info.issues.duplicateRows)plan.push({type:"review",label:"Remove exact duplicate rows",count:info.issues.duplicateRows});if(info.issues.invalidDates)plan.push({type:"review",label:"Review invalid dates",count:info.issues.invalidDates});if(info.issues.missing)plan.push({type:"review",label:"Review missing values",count:info.issues.missing});return plan;};
+const cleanedRows=()=>{
+ let seen=new Set(), out=[];rows.forEach(r=>{let empty=headers.every(h=>clean(r[h])==="");if(empty)return;let nr={};headers.forEach(h=>nr[h]=typeof r[h]==="string"?normalizeText(r[h]):r[h]);let sig=headers.map(h=>clean(nr[h])).join("\u241f");if(seen.has(sig))return;seen.add(sig);out.push(nr)});return out;
+};
+const downloadCleanedCSV=()=>{let cr=cleanedRows(),csv=[headers,...cr.map(r=>headers.map(h=>{let v=r[h]??"";v=String(v).replace(/"/g,'""');return /[",\n]/.test(v)?`"${v}"`:v}))].map(r=>r.join(",")).join("\n"),blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=(fileName.replace(/\.[^.]+$/i,"")||"cleaned")+"_cleaned.csv";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+const whatIfRevenue=()=>{let b=info.biz;if(!b.revenue)return null;let p=Number(document.getElementById("whatIfPct")?.value||0)/100,total=sumCol(b.revenue),newTotal=total*(1+p);return{total,newTotal,delta:newTotal-total,p};};
+const runWhatIf=()=>{let x=whatIfRevenue(),el=document.getElementById("whatIfResult");if(!x||!el)return;el.innerHTML=insight(`Projected ${esc(info.biz.revenue)}: <b>${money(x.newTotal)}</b> (${x.p>=0?"+":""}${pct(x.p)} vs current). Change: <b>${money(x.delta)}</b>. This is a proportional scenario, not a causal forecast.`)};
+
+/* ===== Presentation Export ===== */
+const PPT_INK="1C1D1F",PPT_MUTED="646B76",PPT_LINE="E1DED7",PPT_PANEL="F7F5F1",PPT_BRASS="B8863C",PPT_TEAL="3E7F76",PPT_GOOD="3E7F5A",PPT_WARN="A66F1E",PPT_BAD="A64A3D";
+const PPT_SERIES=["B8863C","3E7F76","646B76","A64A3D","3E7F5A","8B6F9E"];
+/* Deeper "navy + brass + teal" accent set used for the redesigned deck chrome */
+const PPT_NAVY="14171C",PPT_NAVY2="1F2530",PPT_BRASS_L="D9B678",PPT_TEAL_L="6FB3A6",PPT_CREAM="FBFAF7";
+const PPT_ACCENTS=[PPT_BRASS,PPT_TEAL];
+const plainText=s=>String(s??"").replace(/<[^>]*>/g,"").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
+const HEAD_FONT="Georgia",BODY_FONT="Calibri";
+
+/* Faux gradient band: pptxgenjs has no reliable multi-stop gradient fill, so
+   layer thin translucent-feeling strips of blended hex tones to fake one. */
+function pptGradientBand(s,{x,y,w,h,from,to,steps=18,dir="h"}){
+ const f=hexToRgb(from),t=hexToRgb(to);
+ for(let i=0;i<steps;i++){
+  const p=i/(steps-1);
+  const c=rgbToHex(f.r+(t.r-f.r)*p,f.g+(t.g-f.g)*p,f.b+(t.b-f.b)*p);
+  if(dir==="h"){
+   s.addShape("rect",{x:x+(w/steps)*i,y,w:w/steps+0.01,h,fill:{color:c},line:{type:"none"}});
+  }else{
+   s.addShape("rect",{x,y:y+(h/steps)*i,w,h:h/steps+0.01,fill:{color:c},line:{type:"none"}});
+  }
+ }
+}
+function hexToRgb(h){h=h.replace("#","");return{r:parseInt(h.substr(0,2),16),g:parseInt(h.substr(2,2),16),b:parseInt(h.substr(4,2),16)};}
+function rgbToHex(r,g,b){const c=v=>Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,"0");return(c(r)+c(g)+c(b)).toUpperCase();}
+
+function pptFooter(s,pageNo,d){
+ s.addShape("line",{x:0.55,y:7.02,w:12.23,h:0,line:{color:PPT_LINE,width:0.75}});
+ s.addShape("rect",{x:0.55,y:7.018,w:0.9,h:0.02,fill:{color:PPT_BRASS},line:{type:"none"}});
+ s.addText(`${plainText(d?.fileName||"Dataset")}  ·  Prepared by Ledgerline Analyst  ·  Confidential — Internal Use`,{x:0.55,y:7.08,w:9.5,h:0.28,fontFace:BODY_FONT,fontSize:8,color:PPT_MUTED});
+ s.addText(new Date().toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"}),{x:9.9,y:7.08,w:1.85,h:0.28,fontFace:BODY_FONT,fontSize:8,color:PPT_MUTED,align:"right"});
+ s.addText(String(pageNo),{x:11.85,y:7.08,w:0.9,h:0.28,fontFace:BODY_FONT,fontSize:8,color:PPT_MUTED,align:"right"});
+}
+function pptSlideShell(pptx,eyebrow,pageNo,d){
+ let s=pptx.addSlide();
+ s.background={color:"FFFFFF"};
+ // Slim top accent rule across the full slide width (brass → teal fade)
+ pptGradientBand(s,{x:0,y:0,w:13.33,h:0.07,from:PPT_BRASS,to:PPT_TEAL,steps:24});
+ s.addShape(pptx.ShapeType.roundRect,{x:0.5,y:0.28,w:2.35,h:0.36,rectRadius:0.18,fill:{color:PPT_INK},line:{type:"none"}});
+ s.addText(eyebrow.toUpperCase(),{x:0.5,y:0.28,w:2.35,h:0.36,align:"center",valign:"middle",fontFace:BODY_FONT,fontSize:9.5,color:"FFFFFF",charSpacing:1.6,bold:true});
+ s.addShape(pptx.ShapeType.rect,{x:3.02,y:0.44,w:0.13,h:0.13,fill:{color:PPT_BRASS},rotate:45,line:{type:"none"}});
+ if(pageNo)pptFooter(s,pageNo,d);
+ return s;
+}
+function pptTable(s,headRow,bodyRows,opts={}){
+ let rows=[headRow.map(h=>({text:h,options:{bold:true,color:"FFFFFF",fill:{color:PPT_INK},fontSize:10.5,fontFace:BODY_FONT}}))];
+ bodyRows.forEach((r,i)=>rows.push(r.map((c,ci)=>({text:String(c),options:{fontSize:10,color:PPT_INK,fontFace:BODY_FONT,fill:{color:i%2?"FFFFFF":PPT_PANEL},bold:ci===0&&/^★/.test(String(c))}}))));
+ s.addTable(rows,Object.assign({x:0.55,y:1.45,w:12.2,autoPage:false,border:{type:"solid",color:PPT_LINE,pt:0.5},margin:[3,6,3,6]},opts));
+}
+function pptBullets(s,items,opts={}){
+ if(!items.length)return;
+ let paras=items.map((t,i)=>({text:plainText(t),options:{bullet:{code:"25AA",indent:14},color:PPT_INK,breakLine:i<items.length-1}}));
+ s.addText(paras,Object.assign({x:0.55,y:1.35,w:12.2,h:5.6,fontFace:BODY_FONT,fontSize:14,lineSpacingMultiple:1.3,paraSpaceAfter:10,valign:"top"},opts));
+}
+/* Consistent editorial section title: accent tick + serif heading + optional subtitle,
+   used on every content slide so the deck reads as one designed report, not loose slides. */
+function pptSectionTitle(s,title,subtitle,accent=PPT_BRASS){
+ s.addShape("rect",{x:0.55,y:0.95,w:0.09,h:0.42,fill:{color:accent},line:{type:"none"}});
+ s.addText(plainText(title),{x:0.78,y:0.85,w:11,h:0.5,fontFace:HEAD_FONT,fontSize:26,color:PPT_INK,bold:true});
+ if(subtitle)s.addText(plainText(subtitle),{x:0.8,y:1.34,w:11,h:0.3,fontFace:BODY_FONT,fontSize:11,color:PPT_MUTED});
+}
+/* Small colored stat chip used for single-number callouts within a slide body */
+function pptStatChip(s,{x,y,w=3.6,h=1.15,label,value,sub,accent=PPT_BRASS}){
+ s.addShape("roundRect",{x,y,w,h,rectRadius:0.09,fill:{color:PPT_PANEL},line:{type:"none"},shadow:{type:"outer",color:"000000",opacity:0.1,blur:5,offset:2,angle:90}});
+ s.addShape("roundRect",{x,y,w:0.06,h,rectRadius:0.03,fill:{color:accent},line:{type:"none"}});
+ s.addText(String(label||"").toUpperCase(),{x:x+0.2,y:y+0.12,w:w-0.35,h:0.28,fontFace:BODY_FONT,fontSize:8.5,color:PPT_MUTED,bold:true,charSpacing:0.8});
+ s.addText(String(value??"—"),{x:x+0.2,y:y+0.38,w:w-0.35,h:0.48,fontFace:HEAD_FONT,fontSize:18,color:PPT_INK,bold:true});
+ if(sub)s.addText(String(sub),{x:x+0.2,y:y+0.86,w:w-0.35,h:0.28,fontFace:BODY_FONT,fontSize:8.5,color:PPT_MUTED});
+}
+/* Highlight/insight callout bar — mirrors the HTML report's ".insight" boxes */
+function pptCallout(s,{x=0.55,y,w=12.2,text,accent=PPT_BRASS,fontSize=11.5}){
+ const charsPerLine=Math.max(40,(w/0.095)|0);
+ const lines=Math.max(1,Math.ceil(plainText(text).length/charsPerLine));
+ const h=0.3+lines*0.26;
+ s.addShape("roundRect",{x,y,w,h,rectRadius:0.06,fill:{color:PPT_PANEL},line:{type:"none"}});
+ s.addShape("roundRect",{x,y,w:0.06,h,rectRadius:0.03,fill:{color:accent},line:{type:"none"}});
+ s.addText(plainText(text),{x:x+0.22,y,w:w-0.4,h,valign:"middle",fontFace:BODY_FONT,fontSize,color:PPT_INK,lineSpacingMultiple:1.2});
+ return h;
+}
+/* Small subheading used to label a block within a slide body (e.g. "Key findings") */
+function pptSubheading(s,text,opts={}){
+ const {x=0.55,y,w=6,accent=PPT_TEAL,fontSize=13}=opts;
+ s.addShape("rect",{x,y:y+0.03,w:0.11,h:0.11,fill:{color:accent},rotate:45,line:{type:"none"}});
+ s.addText(plainText(text),{x:x+0.26,y:y-0.06,w:w-0.26,h:0.35,fontFace:HEAD_FONT,fontSize,color:PPT_INK,bold:true});
+}
+function pptKpiRow(pptx,s,items,y=1.3){
+ let n=items.length,gap=0.25,w=(12.2-gap*(n-1))/n;
+ items.forEach((it,i)=>{
+  let x=0.55+i*(w+gap),accent=PPT_ACCENTS[i%PPT_ACCENTS.length];
+  s.addShape(pptx.ShapeType.roundRect,{x,y,w,h:1.62,rectRadius:0.1,fill:{color:PPT_PANEL},line:{type:"none"},shadow:{type:"outer",color:"000000",opacity:0.14,blur:8,offset:3,angle:90}});
+  s.addShape(pptx.ShapeType.roundRect,{x,y,w:0.07,h:1.62,rectRadius:0.03,fill:{color:accent},line:{type:"none"}});
+  s.addText(it.label.toUpperCase(),{x:x+0.22,y:y+0.16,w:w-0.4,h:0.3,fontFace:BODY_FONT,fontSize:9,color:PPT_MUTED,bold:true,charSpacing:1});
+  s.addText(it.value,{x:x+0.22,y:y+0.47,w:w-0.4,h:0.6,fontFace:HEAD_FONT,fontSize:22,color:PPT_INK,bold:true});
+  s.addText(it.sub||"",{x:x+0.22,y:y+1.1,w:w-0.4,h:0.42,fontFace:BODY_FONT,fontSize:9.5,color:PPT_MUTED});
+ });
+}
+
+function validateReportPresentationConsistency(){
+ const d=info.deck;
+ if(!d)return{ok:false,errors:["No deck data"]};
+ let errors=[];
+ if(d.b.revenue && !document.body.innerText.includes(fmt(d.totalRevenue)))errors.push("Revenue KPI mismatch");
+ if(Math.abs(d.quality - Number(String(d.quality).replace(/[^\d.]/g,""))) > 0.0001)errors.push("Quality KPI mismatch");
+ (d.graphs||[]).forEach(g=>{if(!validateGraphIntegrity(g))errors.push(`Chart integrity mismatch: ${g.title}`);});
+ const domGraphs=[...document.querySelectorAll(".graph-report-card h2")].map(x=>x.textContent.trim());
+ const expected=(d.graphs||[]).map(g=>g.title);
+ if(JSON.stringify(domGraphs)!==JSON.stringify(expected))errors.push("HTML/PPT graph title mismatch");
+ return{ok:!errors.length,errors};
+}
+async function generatePresentation(){
+ let btn=$("pptBtn");
+ if(!info.deck){alert("Build a report first.");return;}
+ const consistency=validateReportPresentationConsistency();
+ if(!consistency.ok){alert("Export stopped: HTML/PPT consistency check failed.\n\n"+consistency.errors.join("\n"));return;}
+ if(typeof PptxGenJS==="undefined"){alert("The presentation library did not load. Check your internet connection and try again.");return;}
+ let original=btn?btn.textContent:null;
+ if(btn){btn.disabled=true;btn.textContent="Generating…";}
+
+ try{
+  const d=info.deck, pptx=new PptxGenJS();
+  pptx.layout="LAYOUT_WIDE";
+  pptx.author="Ledgerline Analyst";
+  pptx.title=(d.fileName||"Dataset")+" — Executive Analysis";
+  pptx.subject="Executive presentation generated from the validated report";
+
+  /* Slide 1 — Title */
+  let pn=1;
+  let s1=pptx.addSlide();
+  s1.background={color:PPT_NAVY};
+  // Deep navy canvas with a brass→teal gradient rule and soft corner glow shapes
+  pptGradientBand(s1,{x:0,y:0,w:13.33,h:0.12,from:PPT_BRASS,to:PPT_TEAL,steps:30});
+  s1.addShape(pptx.ShapeType.ellipse,{x:-2.4,y:-2.6,w:6,h:6,fill:{color:PPT_NAVY2},line:{type:"none"}});
+  s1.addShape(pptx.ShapeType.ellipse,{x:10.6,y:4.3,w:5.4,h:5.4,fill:{color:PPT_NAVY2},line:{type:"none"}});
+  for(let i=0;i<4;i++){
+   s1.addShape(pptx.ShapeType.rect,{x:0.62+i*0.26,y:1.62,w:0.15,h:0.15,fill:{color:i%2?PPT_TEAL_L:PPT_BRASS_L},rotate:45,line:{type:"none"}});
+  }
+  s1.addText("LEDGERLINE ANALYST",{x:0.55,y:2.0,w:9,h:0.35,fontFace:BODY_FONT,fontSize:12,color:PPT_BRASS_L,charSpacing:2.4,bold:true});
+  s1.addText("Business Intelligence Analysis",{x:0.5,y:2.4,w:11.9,h:1.15,fontFace:HEAD_FONT,fontSize:40,color:"FFFFFF",bold:true});
+  s1.addShape(pptx.ShapeType.roundRect,{x:0.55,y:3.62,w:5.2,h:0.5,rectRadius:0.25,fill:{color:"263041"},line:{type:"none"}});
+  s1.addText(plainText(d.fileName||"Uploaded dataset"),{x:0.55,y:3.62,w:5.2,h:0.5,align:"center",valign:"middle",fontFace:BODY_FONT,fontSize:14,color:PPT_TEAL_L,bold:true});
+  s1.addText(`Detected dataset: ${plainText(d.datasetType?.type||"General Analytics")}`,{x:0.55,y:4.34,w:11.5,h:0.35,fontFace:BODY_FONT,fontSize:13,color:"E7E9EC",bold:true});
+  s1.addText(`${d.rowCount.toLocaleString()} records · ${d.colCount} fields`,{x:0.55,y:4.7,w:11.5,h:0.4,fontFace:BODY_FONT,fontSize:12,color:"9AA2AE"});
+  s1.addShape("line",{x:0.55,y:5.32,w:2.2,h:0,line:{color:PPT_BRASS_L,width:1.5}});
+  s1.addText(`Prepared ${new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"})}  ·  Confidential — Internal Use`,{x:0.55,y:5.45,w:11.5,h:0.35,fontFace:BODY_FONT,fontSize:10.5,color:"9AA2AE"});
+  s1.addText("Executive presentation — key decisions, performance, trends and outlook.",{x:0.55,y:6.8,w:10,h:0.3,fontFace:BODY_FONT,fontSize:9.5,italic:true,color:"7A828E"});
+  pptGradientBand(s1,{x:0,y:7.48,w:13.33,h:0.02,from:PPT_TEAL,to:PPT_BRASS,steps:24});
+
+  /* Slide 2 — Agenda */
+  pn++;
+  let sAgenda=pptSlideShell(pptx,"Contents",pn,d);
+  pptSectionTitle(sAgenda,"Agenda","What this presentation covers, in order");
+  const agendaItems=[
+    "Executive Summary — headline KPIs and key findings",
+    "Data Overview & Quality — scope, source and reliability of the analysis",
+    "Business Performance — revenue, category, product and geographic views",
+    "Segment Performance — where the value is concentrated",
+    "Trend & Forecast — direction, momentum and outlook",
+    "Relationships — statistically significant associations between measures",
+    "Decision Support — key drivers and anomalies worth investigating",
+    "Caveats & Limitations — what to validate before acting on this data",
+    "Recommendations — concrete next actions",
+  ];
+  const agendaCol2=Math.ceil(agendaItems.length/2);
+  agendaItems.forEach((t,i)=>{
+    const col=i<agendaCol2?0:1,row=i<agendaCol2?i:i-agendaCol2;
+    const x=0.55+col*6.15,y=1.95+row*0.92,accent=PPT_ACCENTS[i%PPT_ACCENTS.length];
+    const [head,...rest]=String(t).split(" — ");
+    sAgenda.addShape("ellipse",{x,y,w:0.5,h:0.5,fill:{color:accent},line:{type:"none"}});
+    sAgenda.addText(String(i+1).padStart(2,"0"),{x,y,w:0.5,h:0.5,align:"center",valign:"middle",fontFace:HEAD_FONT,fontSize:14,color:"FFFFFF",bold:true});
+    sAgenda.addText(plainText(head),{x:x+0.68,y:y-0.06,w:5.3,h:0.35,fontFace:HEAD_FONT,fontSize:14,color:PPT_INK,bold:true});
+    sAgenda.addText(plainText(rest.join(" — ")),{x:x+0.68,y:y+0.28,w:5.3,h:0.5,fontFace:BODY_FONT,fontSize:9.5,color:PPT_MUTED,lineSpacingMultiple:1.15});
+  });
+
+  /* Slide 3 — Executive summary */
+  pn++;
+  let s2=pptSlideShell(pptx,"Executive Overview",pn,d);
+  pptSectionTitle(s2,"Executive Summary",`Dataset type: ${plainText(d.datasetType?.type||"General Analytics")}  ·  ${plainText(d.datasetType?.confidence||"low")} confidence`,PPT_BRASS);
+
+  const kpis=[];
+  if(d.b.revenue)kpis.push({label:humanize(d.b.revenue),value:money(d.totalRevenue),sub:"Total observed value"});
+  if(d.b.quantity)kpis.push({label:humanize(d.b.quantity),value:fmt(d.totalQty),sub:"Total quantity"});
+  kpis.push({label:"Records",value:d.rowCount.toLocaleString(),sub:"Analyzed records"});
+  if(d.b.profit||d.b.cost){
+    const profit=Number.isFinite(d.totalProfit)?d.totalProfit:null;
+    if(profit!==null)kpis.push({label:"Profit",value:money(profit,d.b.profit||d.b.revenue),sub:"Observed / derived profit"});
+  }
+  if(!kpis.length)kpis.push({label:"Primary metric",value:"—",sub:"No business measure detected"});
+  pptKpiRow(pptx,s2,kpis.slice(0,4),1.75);
+
+  pptSubheading(s2,"Key findings",{y:3.65,w:12,accent:PPT_TEAL});
+  pptBullets(s2,d.findings.slice(0,5),{y:4.0,h:2.45,fontSize:12.5});
+
+  /* Data Overview & Quality — scope and reliability of the analysis */
+  pn++;
+  let sQ=pptSlideShell(pptx,"Data Overview & Quality",pn,d);
+  pptSectionTitle(sQ,"Data Overview & Quality","Scope, source and reliability of this analysis",PPT_TEAL);
+  const qb=d.qb||{completeness:1,validity:1,consistency:1,uniqueness:1};
+  const qualityRows=[
+    ["Completeness",pct(qb.completeness),"Share of cells with a value"],
+    ["Validity",pct(qb.validity),"Dates and numeric-rule checks"],
+    ["Consistency",pct(qb.consistency),"Whitespace / format consistency"],
+    ["Uniqueness",pct(qb.uniqueness),"Duplicate-row diagnostic"],
+  ];
+  pptSubheading(sQ,"Quality diagnostic",{y:1.7,w:6,accent:PPT_BRASS});
+  pptTable(sQ,["Dimension","Score","Basis"],qualityRows,{x:0.55,y:2.05,w:6,colW:[2,1.2,2.8],fontSize:10.5});
+  pptStatChip(sQ,{x:0.55,y:4.45,w:2.85,h:1.05,label:"Overall score",value:Number.isFinite(d.quality)?d.quality.toFixed(1)+"%":"—",accent:d.quality>=80?PPT_GOOD:d.quality>=60?PPT_WARN:PPT_BAD});
+  sQ.addText("Diagnostic score, not a guarantee of correctness.",{x:3.6,y:4.6,w:2.9,h:0.75,valign:"middle",fontFace:BODY_FONT,fontSize:9,italic:true,color:PPT_MUTED});
+
+  pptSubheading(sQ,"Scope of analysis",{x:6.95,y:1.7,w:5.7,accent:PPT_BRASS});
+  const scopeBullets=[
+    `${d.rowCount.toLocaleString()} records across ${d.colCount} fields (${(d.ncols||[]).length} numeric, ${(d.cats||[]).length} categorical, ${(d.ids||[]).length} identifier)`,
+    `Detected dataset type: ${plainText(d.datasetType?.type||"General Analytics")} (${plainText(d.datasetType?.confidence||"low")} confidence)`,
+  ];
+  if(d.ti&&d.ti.s&&d.ti.s.length)scopeBullets.push(`Time coverage: ${plainText(d.ti.s[0][0])} to ${plainText(d.ti.s[d.ti.s.length-1][0])} (${plainText(d.ti.granularity||"period")} grain)`);
+  const measureNames=["revenue","profit","cost","quantity"].filter(k=>d.b?.[k]).map(k=>humanize(d.b[k]));
+  scopeBullets.push(measureNames.length?`Business measures detected: ${measureNames.join(", ")}`:"No standard business measure (revenue/profit/cost/quantity) was detected");
+  scopeBullets.push("Source: uploaded spreadsheet file, analyzed locally with no external data added");
+  pptBullets(sQ,scopeBullets,{x:6.95,y:2.05,w:5.7,h:2.6,fontSize:11.5});
+
+  const cleanRows=(d.cleaningPlan||[]).slice(0,4).map(x=>[plainText(x.label),String(x.count),x.type==="safe"?"Safe to auto-clean":"Review before use"]);
+  if(cleanRows.length){
+    pptSubheading(sQ,"Data checks flagged",{x:6.95,y:4.75,w:5.7,accent:PPT_WARN,fontSize:12});
+    pptTable(sQ,["Check","Count","Action"],cleanRows,{x:6.95,y:5.08,w:5.7,colW:[2.6,1.1,2.0],fontSize:9.5});
+  }
+
+  /* Slide — Only the most decision-useful report charts */
+  const presentationGraphs=(d.graphs||[]).slice(0,4);
+  presentationGraphs.forEach((g,idx)=>{
+    const data=graphRows(g);
+    if(!data.length)return;
+    pn++;
+    const accent=PPT_ACCENTS[idx%PPT_ACCENTS.length];
+    let s=pptSlideShell(pptx,"Business Performance",pn,d);
+    pptSectionTitle(s,plainText(g.title),`${plainText(humanize(g.x))} vs ${plainText(humanize(g.y))}`,accent);
+    const labels=data.map(x=>plainText(x.x)), values=data.map(x=>+x.y.toFixed(4));
+    const chartType=g.type==="line"?"line":g.type==="bar"?"bar":g.type==="scatter"?"scatter":g.type;
+    if(chartType==="scatter"){
+      s.addChart(pptx.ChartType.scatter,[{name:plainText(g.y),labels,values}],{x:0.55,y:1.78,w:9.05,h:4.55,chartColors:[accent],showLegend:false});
+    }else{
+      s.addChart(chartType==="line"?pptx.ChartType.line:chartType==="doughnut"?pptx.ChartType.doughnut:chartType==="pie"?pptx.ChartType.pie:pptx.ChartType.bar,
+       [{name:plainText(g.y),labels,values}],{
+        x:0.55,y:1.78,w:9.05,h:4.55,chartColors:chartType==="pie"||chartType==="doughnut"?PPT_SERIES:[accent],showLegend:chartType==="pie"||chartType==="doughnut",legendPos:"r",showValue:chartType!=="line"&&chartType!=="pie"&&chartType!=="doughnut",
+        catAxisLabelColor:PPT_INK,catAxisLabelFontSize:9,valAxisLabelColor:PPT_INK,valGridLine:{color:PPT_LINE,size:0.5},catGridLine:{style:"none"}
+       });
+    }
+    // Right-hand rail: top performer + quick stats, echoing the report's insight callouts
+    const maxPt=data.reduce((a,b)=>b.y>a.y?b:a,data[0]),minPt=data.reduce((a,b)=>b.y<a.y?b:a,data[0]);
+    const total=data.reduce((sum,x)=>sum+x.y,0);
+    pptStatChip(s,{x:9.85,y:1.78,w:2.9,h:1.15,label:"Top value",value:fmt(maxPt.y),sub:plainText(String(maxPt.x)).slice(0,26),accent});
+    pptStatChip(s,{x:9.85,y:3.03,w:2.9,h:1.15,label:"Lowest value",value:fmt(minPt.y),sub:plainText(String(minPt.x)).slice(0,26),accent:PPT_MUTED});
+    pptStatChip(s,{x:9.85,y:4.28,w:2.9,h:1.15,label:"Combined total",value:fmt(total),sub:`${data.length} categories`,accent});
+    s.addText(`${plainText(humanize(g.x))} → ${plainText(humanize(g.y))}  ·  chart ${idx+1} of ${presentationGraphs.length}`,{x:0.55,y:6.5,w:11,h:0.3,fontFace:BODY_FONT,fontSize:9,italic:true,color:PPT_MUTED});
+  });
+
+  /* Segment Performance — where the value is concentrated, independent of chart selection */
+  const segDims=[
+    ["Category",d.b?.category,d.categoryPerf],
+    ["City / Region",d.b?.city,d.cityPerf],
+    ["Product",d.b?.product,d.productPerf],
+    ["Payment Method",d.b?.payment,d.paymentPerf],
+  ].filter(([,col,perf])=>col&&perf&&perf.length);
+  if(segDims.length){
+    pn++;
+    let sSeg=pptSlideShell(pptx,"Segment Performance",pn,d);
+    pptSectionTitle(sSeg,"Segment Leaders","Where observed value is concentrated across dimensions",PPT_TEAL);
+    const total=d.totalRevenue;
+    const leaderRows=segDims.map(([label,col,perf])=>{
+      const top=perf[0];
+      return [plainText(label),plainText(top.key),money(top.total),Number.isFinite(total)&&total?pct(top.total/total):"—",String(top.count)];
+    });
+    pptTable(sSeg,["Dimension","Leading segment","Value","Share","Records"],leaderRows,{x:0.55,y:1.78,w:12.2,colW:[2.6,3.4,2.6,1.8,1.8],fontSize:11.5});
+    if(d.productPerf&&d.productPerf.length>=3){
+      const top5=d.productPerf.slice(0,5).map(x=>[plainText(x.key),String(x.count),money(x.total),Number.isFinite(total)&&total?pct(x.total/total):"—"]);
+      pptSubheading(sSeg,`Top ${Math.min(5,d.productPerf.length)} ${plainText(humanize(d.b.product))} by value`,{y:3.85,w:8,accent:PPT_BRASS,fontSize:13});
+      pptTable(sSeg,[plainText(humanize(d.b.product)),"Records","Value","Share"],top5,{x:0.55,y:4.2,w:8,colW:[3.2,1.6,2,1.2],fontSize:10.5});
+      pptStatChip(sSeg,{x:8.85,y:3.85,w:3.9,h:1.4,label:"#1 performer",value:plainText(d.productPerf[0].key).slice(0,20),sub:money(d.productPerf[0].total),accent:PPT_BRASS});
+    }
+    sSeg.addText("Leaders are ranked by observed value in the uploaded data; small segments are not shown.",{x:0.55,y:6.55,w:12,h:0.3,fontFace:BODY_FONT,fontSize:9,italic:true,color:PPT_MUTED});
+  }
+
+  /* Trend & forecast — always uses the same adaptive grain as the report */
+  if(d.ti&&d.ti.s&&d.ti.s.length){
+    pn++;
+    let s7=pptSlideShell(pptx,"Outlook",pn,d);
+    pptSectionTitle(s7,"Trend & Forecast","Direction, momentum and projected outlook",PPT_BRASS);
+    const gran=plainText(d.ti.granularity||"period");
+    const labels=d.ti.s.map(x=>x[0]), values=d.ti.s.map(x=>+x[1].sales.toFixed(2));
+    const pySpec=d.pySpec, hasAdvanced=!!(pySpec&&pySpec.can_forecast&&pySpec.methods&&Object.keys(pySpec.methods).length);
+    s7.addChart(pptx.ChartType.line,[{name:plainText(d.ti.metricLabel||d.ti.metric||"Metric"),labels,values}],{
+      x:0.55,y:1.75,w:7.65,h:hasAdvanced?3.2:4.35,chartColors:[PPT_BRASS],lineSize:2.5,lineDataSymbol:"circle",lineDataSymbolSize:5,
+      showTitle:true,title:plainText(d.ti.metricLabel||d.ti.metric||"Metric trend"),titleColor:PPT_INK,titleFontSize:12,
+      catAxisLabelColor:PPT_INK,catAxisLabelFontSize:8,catAxisLabelRotate:30,
+      valAxisLabelColor:PPT_INK,valGridLine:{color:PPT_LINE,size:0.5},catGridLine:{style:"none"},showLegend:false
+    });
+
+    let trendBullets=[`Reporting grain: ${gran}`];
+    if(hasAdvanced){
+      const bestLabel=(pySpec.methods[pySpec.best_method]||{}).label||pySpec.best_method;
+      trendBullets.push(`Best-fit model (lowest AIC): ${plainText(bestLabel)}`);
+      trendBullets.push(`Direction: ${d.ti.trend||"—"}`);
+      const p=pySpec.p_value;
+      const sigText=Number.isFinite(p)?(p<0.05?`p = ${p.toFixed(4)} (statistically significant)`:`p = ${p.toFixed(4)} (not statistically significant)`):"Not available";
+      trendBullets.push(`Trend significance: ${sigText}`);
+      (pySpec.forecast||[]).forEach((v,i)=>{
+        const c95=(pySpec.ci95||[])[i];
+        const ciText=c95?` (95% CI: ${money(c95[0],pySpec.metric)} to ${money(c95[1],pySpec.metric)})`:"";
+        trendBullets.push(`+${i+1} ${gran} forecast: ${money(v,pySpec.metric)}${ciText}`);
+      });
+    }else{
+      trendBullets.push(`Direction: ${d.ti.trend||"—"}`);
+      trendBullets.push(`Slope: ${fmt(d.ti.reg?.slope||0)} per ${gran}`);
+      trendBullets.push(`R²: ${fmt(d.ti.reg?.r2||0)}`);
+      trendBullets.push(`First-to-last growth: ${Number.isFinite(d.ti.growth)?pct(d.ti.growth):"—"}`);
+      if((d.ti.forecast||[]).length){
+        d.ti.forecast.forEach((v,i)=>trendBullets.push(`+${i+1} ${gran} forecast: ${money(v,d.ti.metric)}`));
+      }
+    }
+    pptSubheading(s7,"Forecast outlook",{x:8.5,y:1.75,w:4.15,accent:PPT_TEAL,fontSize:14});
+    pptBullets(s7,trendBullets,{x:8.5,y:2.1,w:4.1,h:4.2,fontSize:11});
+
+    if(hasAdvanced){
+      const order=["linear","holt","arima"];
+      const methodRows=order.filter(k=>pySpec.methods[k]).map(k=>{
+        const m=pySpec.methods[k],isBest=(k===pySpec.best_method);
+        const fVals=(m.forecast||[]).map(v=>money(v,pySpec.metric)).join(" / ")||"—";
+        return [`${isBest?"★ ":""}${plainText(m.label)}`,Number.isFinite(m.aic)?fmt(m.aic):"—",fVals];
+      });
+      pptSubheading(s7,"Methods compared (AIC — lower is a better fit)",{y:5.08,w:7.65,accent:PPT_BRASS,fontSize:11.5});
+      pptTable(s7,["Method","AIC",`Forecast (+1/+2/+3 ${gran})`],methodRows,{x:0.55,y:5.42,w:7.65,colW:[2.55,1.3,3.8],fontSize:9.5});
+    }
+  }
+
+  /* Relationships — keep only actionable correlation evidence */
+  if(d.correlations&&d.correlations.length){
+    pn++;
+    let s8=pptSlideShell(pptx,"Relationships",pn,d);
+    pptSectionTitle(s8,"Key Relationships","Statistically notable associations between measures",PPT_TEAL);
+    const corrRows=d.correlations.slice(0,5).map(x=>[
+      plainText(humanize(x.a)),plainText(humanize(x.b)),x.c.toFixed(3),
+      Math.abs(x.c)>=.7?"Strong":Math.abs(x.c)>=.4?"Moderate":"Weak"
+    ]);
+    pptTable(s8,["Variable A","Variable B","Correlation","Strength"],corrRows,{
+      x:0.55,y:1.78,w:9.1,colW:[2.9,2.9,1.65,1.65],fontSize:11
+    });
+    const top=d.correlations[0];
+    pptStatChip(s8,{x:9.95,y:1.78,w:2.8,h:1.5,label:"Strongest link",value:`r = ${top.c.toFixed(2)}`,sub:`${plainText(humanize(top.a))} ↔ ${plainText(humanize(top.b))}`,accent:Math.abs(top.c)>=.7?PPT_GOOD:PPT_TEAL});
+    pptCallout(s8,{y:6.05,text:"Correlation indicates association, not causation.",accent:PPT_MUTED,fontSize:9.5});
+  }
+
+  /* Decision support — only meaningful drivers/anomalies */
+  if((d.rootDrivers&&d.rootDrivers.length)||(d.anomalies&&d.anomalies.length)){
+    pn++;
+    let s9=pptSlideShell(pptx,"Decision Support",pn,d);
+    pptSectionTitle(s9,"Drivers & Anomalies","Key drivers behind performance and unusual periods worth investigating",PPT_BRASS);
+    if(d.rootDrivers&&d.rootDrivers.length){
+      pptSubheading(s9,"Key drivers",{y:1.85,w:5.8,accent:PPT_BRASS});
+      pptBullets(s9,d.rootDrivers.slice(0,4).map(x=>x.text),{x:0.55,y:2.2,w:5.8,h:4.1,fontSize:12});
+    }
+    if(d.anomalies&&d.anomalies.length){
+      pptSubheading(s9,"Unusual periods",{x:6.75,y:1.85,w:5.9,accent:PPT_BAD});
+      pptBullets(s9,d.anomalies.slice(0,5).map(x=>`${plainText(x.period)}: ${money(x.sales)} (z = ${x.z.toFixed(2)})`),{x:6.75,y:2.2,w:5.9,h:4.1,fontSize:12});
+    }
+  }
+
+  /* Caveats & Limitations — what to validate before acting on this data */
+  const caveats=[];
+  if((d.timeChangeWarnings||[]).length)caveats.push(`${d.timeChangeWarnings.length} large period-to-period change(s) were flagged; confirm these are not unit changes or reporting inconsistencies before trusting the trend.`);
+  const smallSample=(d.correlations||[]).filter(x=>x.n<15);
+  if(smallSample.length)caveats.push(`${smallSample.length} correlation(s) are based on fewer than 15 complete pairs; treat their strength as indicative, not conclusive.`);
+  if((d.correlations||[]).length)caveats.push("Correlation reflects association only; it does not establish that one measure causes another.");
+  const missingCheck=(d.cleaningPlan||[]).find(x=>/missing/i.test(x.label));
+  if(missingCheck)caveats.push(`${missingCheck.count} missing value(s) were detected; totals and averages exclude these rather than assuming zero.`);
+  const dupCheck=(d.cleaningPlan||[]).find(x=>/duplicate/i.test(x.label));
+  if(dupCheck)caveats.push(`${dupCheck.count} duplicate row(s) were detected and could overstate totals if not reviewed before aggregation.`);
+  if(d.datasetType?.confidence==="low")caveats.push("Dataset type classification is low-confidence; validate the detected business measures before relying on the segment breakdowns.");
+  caveats.push("Figures are derived solely from the uploaded file, calculated locally, with no external data added or assumptions imputed.");
+  if(caveats.length){
+    pn++;
+    let sCav=pptSlideShell(pptx,"Caveats & Limitations",pn,d);
+    pptSectionTitle(sCav,"Caveats & Limitations","What to validate before acting on this data",PPT_WARN);
+    let cy=1.85;
+    caveats.slice(0,7).forEach(c=>{ cy+=pptCallout(sCav,{y:cy,text:c,accent:PPT_WARN,fontSize:12.5})+0.14; });
+  }
+
+  /* Recommendations — decision-ready and concise */
+  if(d.recs&&d.recs.length){
+    pn++;
+    let s10=pptSlideShell(pptx,"Actions",pn,d);
+    pptSectionTitle(s10,"Recommendations","Concrete next actions supported by the analysis",PPT_GOOD);
+    let ry=1.85;
+    d.recs.slice(0,6).forEach((r,i)=>{
+      const h=0.66;
+      s10.addShape("roundRect",{x:0.55,y:ry,w:0.42,h:0.42,rectRadius:0.08,fill:{color:PPT_GOOD},line:{type:"none"}});
+      s10.addText(String(i+1),{x:0.55,y:ry,w:0.42,h:0.42,align:"center",valign:"middle",fontFace:HEAD_FONT,fontSize:14,color:"FFFFFF",bold:true});
+      s10.addText(plainText(r),{x:1.15,y:ry-0.04,w:11.6,h:h,valign:"middle",fontFace:BODY_FONT,fontSize:13,color:PPT_INK,lineSpacingMultiple:1.2});
+      ry+=h+0.14;
+    });
+  }
+
+  /* Appendix — supporting descriptive statistics for the analytical team */
+  if(d.stats&&d.stats.length){
+    pn++;
+    let sApp=pptSlideShell(pptx,"Appendix",pn,d);
+    pptSectionTitle(sApp,"Descriptive Statistics","Supporting detail for the analytical team",PPT_TEAL);
+    const statRows=d.stats.slice(0,8).map(s=>[
+      plainText(humanize(s.h)),String(s.n),fmt(s.mean),fmt(s.median),fmt(s.std),fmt(s.min),fmt(s.max)
+    ]);
+    pptTable(sApp,["Column","Count","Mean","Median","Std Dev","Min","Max"],statRows,{
+      x:0.55,y:1.78,w:12.2,colW:[3.4,1.3,1.5,1.5,1.5,1.5,1.5],fontSize:10.5
+    });
+    sApp.addText("Full statistical detail, including percentiles and outlier review, is available in the underlying report.",{x:0.55,y:6.0,w:12,h:0.35,fontFace:BODY_FONT,fontSize:9,italic:true,color:PPT_MUTED});
+  }
+
+  /* Closing */
+  pn++;
+  let sClose=pptx.addSlide();
+  sClose.background={color:PPT_NAVY};
+  pptGradientBand(sClose,{x:0,y:0,w:13.33,h:0.12,from:PPT_TEAL,to:PPT_BRASS,steps:30});
+  sClose.addShape(pptx.ShapeType.ellipse,{x:9.6,y:-2.2,w:6.5,h:6.5,fill:{color:PPT_NAVY2},line:{type:"none"}});
+  sClose.addShape(pptx.ShapeType.ellipse,{x:-2.8,y:3.6,w:5.6,h:5.6,fill:{color:PPT_NAVY2},line:{type:"none"}});
+  for(let i=0;i<4;i++){
+   sClose.addShape(pptx.ShapeType.rect,{x:0.7+i*0.26,y:2.85,w:0.15,h:0.15,fill:{color:i%2?PPT_TEAL_L:PPT_BRASS_L},rotate:45,line:{type:"none"}});
+  }
+  sClose.addText("THANK YOU",{x:0.5,y:3.35,w:11.9,h:0.9,fontFace:HEAD_FONT,fontSize:38,color:"FFFFFF",bold:true,charSpacing:1});
+  sClose.addText("Prepared by Ledgerline Analyst · Questions and follow-up analysis available on request.",{x:0.55,y:4.3,w:11.5,h:0.4,fontFace:BODY_FONT,fontSize:12,color:"C7CBD1"});
+  sClose.addShape("line",{x:0.55,y:4.95,w:2.2,h:0,line:{color:PPT_BRASS_L,width:1.5}});
+  pptGradientBand(sClose,{x:0,y:7.48,w:13.33,h:0.02,from:PPT_BRASS,to:PPT_TEAL,steps:24});
+  sClose.addText(`${plainText(d.fileName||"Dataset")} · ${new Date().toLocaleDateString()}`,{x:0.55,y:6.9,w:11.5,h:0.3,fontFace:BODY_FONT,fontSize:9,color:"7A828E",align:"left"});
+  sClose.addText(String(pn),{x:12.45,y:6.9,w:0.4,h:0.3,fontFace:BODY_FONT,fontSize:9,color:"7A828E",align:"right"});
+
+  let outName=(d.fileName||"dataset").replace(/\.[^.]+$/i,"")+"_executive_presentation.pptx";
+  await pptx.writeFile({fileName:outName});
+ }catch(e){
+  console.error(e);
+  alert("Could not generate the presentation: "+e.message);
+ }finally{
+  if(btn){btn.disabled=false;btn.textContent=original;}
+ }
+}
+
+
+
+
+function graphColumns(type, axis){
+ let numeric=numericCols(), all=headers;
+ if(axis==='x'){
+  if(type==='scatter') return numeric;
+  return all;
+ }
+ return numeric;
+}
+function graphOptions(type, axis, selected){
+ return graphColumns(type,axis).map(h=>`<option value="${esc(h)}" ${h===selected?'selected':''}>${esc(h)}</option>`).join('');
+}
+function graphBuilder(){
+ let id='graphModal'; document.getElementById(id)?.remove();
+ const types=[['line','Line Chart','Best for trends over dates/time'],['bar','Bar Chart','Compare categories or groups'],['doughnut','Doughnut Chart','Show share of a total'],['pie','Pie Chart','Show share of a total'],['scatter','Scatter Chart','Show relationship between two numbers']];
+ let modal=document.createElement('div');modal.id=id;modal.className='graph-modal';
+ modal.innerHTML=`<div class="graph-box"><div class="graph-head"><div><h2>Customize Graph Report</h2><div class="graph-note">Select the graphs you want in your final report. You control the graph type and which columns are used.</div></div><button class="btn secondary" onclick="closeGraphBuilder()">Skip</button></div>
+ <div class="choice-row">${types.map(t=>`<div class="choice" onclick="addGraphForm('${t[0]}')"><strong>${t[1]}</strong><span class="graph-note">${t[2]}</span></div>`).join('')}</div>
+ <div id="graphForms"></div><div class="graph-card"><b>Selected graphs</b><div id="selectedGraphList"></div></div>
+ <div class="graph-actions"><button class="btn secondary" onclick="clearGraphs()">Clear All</button><button class="btn" onclick="finishGraphSelection()">Add Graphs to Report</button></div></div>`;
+ document.body.appendChild(modal); updateSelectedGraphList();
+}
+function addGraphForm(type){
+ let numeric=numericCols(); if(numeric.length<1){alert('At least one numeric column is required to create a graph.');return;}
+ let form=document.createElement('div');form.className='graph-card';form.dataset.type=type;
+ let id='gf_'+Date.now()+'_'+Math.random().toString(16).slice(2);
+ let xDefault=dateCol||headers.find(h=>!numeric.includes(h))||headers[0], yDefault=info.biz.revenue||numeric[0];
+ let isScatter=type==='scatter';
+ form.innerHTML=`<div class="graph-card-head"><b>${type[0].toUpperCase()+type.slice(1)} Chart</b><button class="btn secondary" onclick="this.closest('.graph-card').remove()">Remove</button></div>
+ <div class="graph-grid"><div class="graph-field"><label>${isScatter?'X-axis numeric column':'Category / X-axis column'}</label><select class="gx">${graphOptions(type,'x',xDefault)}</select></div>
+ <div class="graph-field"><label>Value / Y-axis column</label><select class="gy">${graphOptions(type,'y',yDefault)}</select></div>
+ <div class="graph-field"><label>Graph title</label><input class="gt" value="${esc(type==='line'?'Trend Analysis':type==='bar'?'Performance Comparison':type==='scatter'?'Relationship Analysis':'Distribution Analysis')}"></div></div>
+ <div class="graph-actions"><button class="btn secondary" onclick="addConfiguredGraph(this.closest('.graph-card'))">Add This Graph</button></div>`;
+ document.getElementById('graphForms').appendChild(form);
+}
+function addConfiguredGraph(card){
+ let type=card.dataset.type, x=card.querySelector('.gx').value, y=card.querySelector('.gy').value;
+ if(!y){alert('Select a numeric Y-axis metric.');return;}
+ if(type!=='scatter' && !x){alert('Select an X-axis category/date field.');return;}
+ let usable=rows.some(r=>Number.isFinite(num(r[y])));
+ if(!usable){alert('The selected Y-axis column does not contain usable numeric values.');return;}
+ if(type==='line' && dateCol && x!==dateCol){
+   alert('For a trend/line chart, the X-axis must use the detected time/date column.');
+   return;
+ }
+ // Critical integrity rule: chart title is derived from the exact Y-axis metric.
+ const title=humanize(y);
+ selectedGraphs.push({type,x,y,title,titleSource:y}); updateSelectedGraphList(); card.remove();
+}
+function updateSelectedGraphList(){let el=document.getElementById('selectedGraphList');if(!el)return;el.innerHTML=selectedGraphs.length?selectedGraphs.map((g,i)=>`<div class="selected-graph"><span><b>${esc(g.title)}</b> · ${esc(g.type)} · ${esc(humanize(g.x))} → ${esc(humanize(g.y))}</span><button class="btn secondary" onclick="selectedGraphs.splice(${i},1);updateSelectedGraphList()">Remove</button></div>`).join(''):'<div class="graph-note" style="margin-top:8px">No graphs selected yet.</div>'}
+function clearGraphs(){selectedGraphs=[];updateSelectedGraphList()}
+function closeGraphBuilder(){selectedGraphs=[];document.getElementById('graphModal')?.remove();build()}
+function finishGraphSelection(){document.getElementById('graphModal')?.remove();info.graphs=[...selectedGraphs];build()}
+const GRAPH_MAX_POINTS=48;
+const GRAPH_SOURCE_MAX_ROWS=500;
+// Keep the full dataset for analysis, but use a bounded deterministic preview for
+// browser-only visualization. This prevents Chart.js and repeated JS scans from
+// freezing the tab on 100k+ row files.
+function getGraphSourceRows(){
+  if(rows.length<=GRAPH_SOURCE_MAX_ROWS) return rows;
+  const out=[], step=rows.length/GRAPH_SOURCE_MAX_ROWS;
+  for(let i=0;i<rows.length;i+=step) out.push(rows[Math.floor(i)]);
+  return out;
+}
+
+const SCATTER_MAX_POINTS=1400;
+const graphDataCache=new Map();
+
+function graphRows(g){
+ const source=getGraphSourceRows();
+ const cacheKey=JSON.stringify([g.type,g.x,g.y,source.length]);
+ if(graphDataCache.has(cacheKey)) return graphDataCache.get(cacheKey);
+ // Recommended graphs are pre-aggregated by Python from the COMPLETE dataset.
+ // This keeps chart generation exact while avoiding 100k-row browser work.
+ const py=info.pythonGraphData||{};
+ const pyEntry=Object.values(py).find(d=>Array.isArray(d) && d.length &&
+   ((g.type==='scatter' && Number.isFinite(d[0]?.x) && Number.isFinite(d[0]?.y)) ||
+    (g.type!=='scatter' && Object.prototype.hasOwnProperty.call(d[0]||{},'x') && Object.prototype.hasOwnProperty.call(d[0]||{},'y'))));
+ // Match against the backend graph specification rather than relying on array position.
+ const backendSpec=(info.pythonAnalysis?.graph_specs||[]).find(x=>x.type===g.type&&x.x===g.x&&x.y===g.y);
+ if(backendSpec){
+   const idx=(info.pythonAnalysis.graph_specs||[]).indexOf(backendSpec);
+   const exact=py[String(idx)];
+   if(Array.isArray(exact) && exact.length){
+     const result=exact.map(d=>g.type==='scatter'?{x:+d.x,y:+d.y}:{x:String(d.x),y:+d.y,i:0,d:dateCol===g.x?parsePeriod(d.x):null});
+     graphDataCache.set(cacheKey,result); return result;
+   }
+ }
+ let result=[];
+ if(g.type==='scatter'){
+   const valid=[];
+   const stride=Math.max(1,Math.ceil(rows.length/SCATTER_MAX_POINTS));
+   for(let i=0;i<source.length&&valid.length<SCATTER_MAX_POINTS;i+=Math.max(1,Math.ceil(source.length/SCATTER_MAX_POINTS))){
+     const r=rows[i],x=num(r[g.x]),y=num(r[g.y]);
+     if(Number.isFinite(x)&&Number.isFinite(y)) valid.push({x,y,i});
+   }
+   result=valid;
+ }else{
+   const map=new Map(),order=[];
+   for(let i=0;i<source.length;i++){
+     const r=rows[i],k=clean(r[g.x]),v=num(r[g.y]);
+     if(!k||!Number.isFinite(v)) continue;
+     let entry=map.get(k);
+     if(entry) entry.y+=v;
+     else {entry={x:k,y:v,i,d:dateCol===g.x?parsePeriod(k):null};map.set(k,entry);order.push(entry);}
+   }
+   if(g.type==='line' && dateCol===g.x)
+     order.sort((a,b)=>(a.d?.getTime()??a.i)-(b.d?.getTime()??b.i));
+   result=order.slice(0,GRAPH_MAX_POINTS);
+ }
+ graphDataCache.set(cacheKey,result);
+ return result;
+}
+const validateGraphIntegrity=g=>{
+ const data=graphRows(g);
+ return !!g.y && g.titleSource===g.y && g.title===humanize(g.y) && data.every(x=>Number.isFinite(x.y)) &&
+   (g.type!=='line'||!dateCol||g.x===dateCol);
+};
+
+function wrapAxisLabel(value, maxChars=14){
+  const s=String(value??"");
+  if(s.length<=maxChars)return s;
+  const words=s.split(/\s+/);
+  const lines=[]; let line="";
+  words.forEach(w=>{
+    if(!line) line=w;
+    else if((line+" "+w).length<=maxChars) line+=" "+w;
+    else {lines.push(line); line=w;}
+  });
+  if(line)lines.push(line);
+  if(lines.length<=2)return lines;
+  return [lines[0], lines.slice(1).join(" ").slice(0,maxChars-1)+"…"];
+}
+
+// Chart.js is loaded from a CDN. Keep report graphs usable when the computer
+// is offline, the CDN is blocked, or Chart.js rejects a configuration.
+function renderGraphFallback(canvas,data,g){
+ const host=canvas?.parentElement;if(!host)return;
+ // Match the SVG coordinate system to its rendered container. This expands a
+ // wide dashboard chart naturally without distorting its bars or trend line.
+ const w=Math.max(560,Math.round(host.clientWidth||720)),h=Math.max(280,Math.round(host.clientHeight||320)),pad={l:68,r:26,t:26,b:54},colors=['#d9b56e','#5eb6a7','#78c798','#e3a65d','#df8378','#8299b8'];
+ const finite=data.filter(d=>Number.isFinite(Number(d.y)));
+ if(!finite.length){host.innerHTML='<div class="note">No valid values are available for this graph.</div>';return;}
+ const label=value=>esc(String(value??'').length>18?String(value).slice(0,17)+'…':value??'');
+ const fmt=value=>Number(value).toLocaleString(undefined,{maximumFractionDigits:1});
+ if(g.type==='pie'||g.type==='doughnut'){
+   const total=finite.reduce((sum,d)=>sum+Math.max(0,Number(d.y)),0);
+   if(!(total>0)){host.innerHTML='<div class="note">A pie/doughnut graph requires values greater than zero.</div>';return;}
+   let angle=-Math.PI/2,paths='',legend='';
+   finite.slice(0,10).forEach((d,i)=>{const part=Math.max(0,Number(d.y))/total,next=angle+part*Math.PI*2,large=next-angle>Math.PI?1:0,c=colors[i%colors.length],x1=165+108*Math.cos(angle),y1=155+108*Math.sin(angle),x2=165+108*Math.cos(next),y2=155+108*Math.sin(next);paths+=`<path d="M165 155 L${x1.toFixed(1)} ${y1.toFixed(1)} A108 108 0 ${large} 1 ${x2.toFixed(1)} ${y2.toFixed(1)} Z" fill="${c}" stroke="#11151b" stroke-width="3"/>`;angle=next;legend+=`<div style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06)"><span style="display:flex;gap:8px;align-items:center"><i style="width:9px;height:9px;border-radius:50%;background:${c};display:inline-block;box-shadow:0 0 8px ${c}"></i>${label(d.x)}</span><b style="font-weight:600">${(part*100).toFixed(1)}%</b></div>`;});
+   if(g.type==='doughnut')paths+='<circle cx="165" cy="155" r="64" fill="#131519"/><text x="165" y="149" text-anchor="middle" fill="#8b93a1" font-size="11">TOTAL</text><text x="165" y="169" text-anchor="middle" fill="#edf0f2" font-size="14" font-weight="700">'+fmt(total)+'</text>';
+   host.innerHTML=`<div style="display:flex;gap:24px;align-items:center;min-height:282px;padding:4px 8px"><svg viewBox="0 0 330 310" role="img" aria-label="${label(g.title)}" style="width:46%;min-width:185px;max-height:280px">${paths}</svg><div style="font-size:12px;line-height:1.35;flex:1;max-height:238px;overflow:auto">${legend}</div></div>`;return;
+ }
+ const values=finite.map(d=>Number(d.y)),minY=Math.min(...values),maxY=Math.max(...values),range=maxY-minY||1,xFor=i=>pad.l+i*((w-pad.l-pad.r)/Math.max(1,finite.length-1)),yFor=v=>h-pad.b-((v-minY)/range)*(h-pad.t-pad.b);
+ const grid=[0,.25,.5,.75,1].map(t=>{const y=pad.t+t*(h-pad.t-pad.b),value=maxY-t*range;return `<line x1="${pad.l}" y1="${y.toFixed(1)}" x2="${w-pad.r}" y2="${y.toFixed(1)}" stroke="rgba(139,147,161,.18)" stroke-dasharray="3 5"/><text x="${pad.l-10}" y="${(y+4).toFixed(1)}" text-anchor="end" fill="#8b93a1" font-size="10">${fmt(value)}</text>`}).join('');
+ let marks=`<defs><linearGradient id="chartGold" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#e1c17b"/><stop offset="1" stop-color="#b9873e"/></linearGradient><linearGradient id="chartArea" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#d9b56e" stop-opacity=".35"/><stop offset="1" stop-color="#d9b56e" stop-opacity="0"/></linearGradient><filter id="chartGlow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="0" y="0" width="${w}" height="${h}" rx="12" fill="#11151b"/>${grid}<line x1="${pad.l}" y1="${h-pad.b}" x2="${w-pad.r}" y2="${h-pad.b}" stroke="#6b7380"/><text x="${pad.l}" y="${h-16}" fill="#8b93a1" font-size="10">${label(finite[0].x)}</text><text x="${w-pad.r}" y="${h-16}" text-anchor="end" fill="#8b93a1" font-size="10">${label(finite.at(-1).x)}</text>`;
+ let shapes='';
+ if(g.type==='bar'){
+   const step=(w-pad.l-pad.r)/finite.length,bw=Math.max(5,step*.62);shapes=finite.map((d,i)=>{const y=yFor(Number(d.y)),x=pad.l+i*step+(step-bw)/2;return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${(h-pad.b-y).toFixed(1)}" rx="4" fill="url(#chartGold)"><title>${label(d.x)}: ${fmt(d.y)}</title></rect>${finite.length<=12?`<text x="${(x+bw/2).toFixed(1)}" y="${h-pad.b+16}" text-anchor="middle" fill="#8b93a1" font-size="9">${label(d.x)}</text>`:''}`}).join('');
+ }else if(g.type==='scatter'){
+   const xs=finite.map(d=>Number(d.x)).filter(Number.isFinite),minX=Math.min(...xs),maxX=Math.max(...xs),rangeX=maxX-minX||1,sx=v=>pad.l+((v-minX)/rangeX)*(w-pad.l-pad.r);shapes=finite.map(d=>`<circle cx="${sx(Number(d.x)).toFixed(1)}" cy="${yFor(Number(d.y)).toFixed(1)}" r="4.5" fill="#5eb6a7" fill-opacity=".84" stroke="#b9eee3" stroke-width="1"><title>${fmt(d.x)}, ${fmt(d.y)}</title></circle>`).join('');
+ }else{
+   const points=finite.map((d,i)=>`${xFor(i).toFixed(1)},${yFor(Number(d.y)).toFixed(1)}`).join(' '),area=`${pad.l},${h-pad.b} ${points} ${xFor(finite.length-1).toFixed(1)},${h-pad.b}`;shapes=`<polygon points="${area}" fill="url(#chartArea)"/><polyline points="${points}" fill="none" stroke="#d9b56e" stroke-width="3" filter="url(#chartGlow)" stroke-linejoin="round" stroke-linecap="round"/>`+finite.map((d,i)=>`<circle cx="${xFor(i).toFixed(1)}" cy="${yFor(Number(d.y)).toFixed(1)}" r="4" fill="#131519" stroke="#f1d894" stroke-width="2"><title>${label(d.x)}: ${fmt(d.y)}</title></circle>`).join('');
+ }
+ host.innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label(g.title)}" style="width:100%;height:100%;display:block">${marks}${shapes}</svg>`;
+}
+
+function renderSelectedGraphs(){
+ graphCharts.forEach(c=>c.destroy());graphCharts=[];let box=document.getElementById('graphReportGrid');if(!box)return;
+ if(!info.graphs?.length){box.innerHTML='<div class="card"><div class="note">No graphs were selected. The report continues without visual charts.</div></div>';return}
+ box.innerHTML=info.graphs.map((g,i)=>`<div class="card graph-report-card"><h2>${esc(g.title)}</h2><div class="graph-note">${esc(g.type)} · ${esc(humanize(g.x))} vs ${esc(humanize(g.y))}</div><div class="graph-canvas-wrap"><canvas id="reportGraph_${i}"></canvas></div></div>`).join('');
+ info.graphs.forEach((g,i)=>{requestAnimationFrame(()=>{
+  const data=graphRows(g),canvas=document.getElementById('reportGraph_'+i);
+  if(!canvas)return;
+  // The report deliberately uses the local SVG renderer. Unlike Chart.js it
+  // has no network dependency and cannot leave an empty canvas after a chart
+  // configuration error. Graph data still comes from the same validated API.
+  renderGraphFallback(canvas,data,g);
+ });});
+}
+/* ===== Automatic Business Dashboard ===== */
+let dashboardCharts=[];
+const dashboardDate=v=>{const d=parsePeriod(v);return d&&Number.isFinite(d.getTime())?d:null};
+const dashboardMetric=(r,c)=>c?num(r[c]):NaN;
+function dashboardRowsByTrendGranularity(){
+  const source=getGraphSourceRows();
+  if(!dateCol)return [];
+  const b=info.biz||{},rev=b.revenue,gran=detectPeriodGranularity()||"month",map=new Map();
+  source.forEach(r=>{
+    const d=dashboardDate(r[dateCol]);if(!d)return;
+    const key=periodKeyFromDate(d,gran);if(!key)return;
+    if(!map.has(key))map.set(key,{key,revenue:0,profit:0,orders:0});
+    const x=map.get(key);x.orders++;
+    const rv=dashboardMetric(r,rev);if(Number.isFinite(rv))x.revenue+=rv;
+    const pv=dashboardProfitValue(r);
+    if(Number.isFinite(pv))x.profit+=pv;
+  });
+  return [...map.values()].sort((a,b)=>(parsePeriod(a.key)?.getTime()??0)-(parsePeriod(b.key)?.getTime()??0))
+    .map(x=>({...x,label:x.key}));
+}
+
+function dashboardProfitValue(r){
+  const b=info.biz||{},rv=dashboardMetric(r,b.revenue),pv=dashboardMetric(r,b.profit);
+  if(Number.isFinite(pv))return pv;
+  const cv=dashboardMetric(r,b.cost);
+  return Number.isFinite(rv)&&Number.isFinite(cv)?rv-cv:NaN;
+}
+function dashboardOrderCount(){
+  const source=getGraphSourceRows();
+  const id=info.biz?.orderId;if(!id)return rows.length;
+  const s=new Set(source.map(r=>clean(r[id])).filter(Boolean));return s.size||rows.length;
+}
+function dashboardGroup(metricCol,dimensionCol){
+  const source=getGraphSourceRows();
+  if(!dimensionCol||!metricCol)return [];
+  const m=new Map();
+  source.forEach(r=>{const k=clean(r[dimensionCol]),v=num(r[metricCol]);if(k&&Number.isFinite(v))m.set(k,(m.get(k)||0)+v)});
+  return [...m.entries()].map(([key,value])=>({key,value})).sort((a,b)=>b.value-a.value);
+}
+function dashboardChartConfig(type,labels,data,label,currency=true){
+  const text=getComputedStyle(document.body).getPropertyValue("--text").trim(),line=getComputedStyle(document.body).getPropertyValue("--line").trim();
+  return {type,data:{labels,datasets:[{label,data,borderWidth:2,tension:.28,pointRadius:type==="line"?3:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:text,font:{size:10}}}},scales:(type==="pie"||type==="doughnut")?{}:{x:{ticks:{color:text,maxRotation:0,minRotation:0,autoSkip:true,padding:7},grid:{color:line}},y:{ticks:{color:text,padding:6,callback:v=>currency?money(v):fmt(v)},grid:{color:line}}}}};
+}
+function renderExecutiveDashboard(){
+  dashboardCharts.forEach(c=>{try{c.destroy()}catch(e){}});dashboardCharts=[];
+  const host=document.getElementById("executiveDashboard");if(!host)return;
+  const b=info.biz||{},rev=b.revenue,totalRevenue=rev?sumCol(rev):NaN,orders=dashboardOrderCount(),avg=Number.isFinite(totalRevenue)&&orders?totalRevenue/orders:NaN;
+  let totalProfit=0,profitUsable=false;rows.forEach(r=>{const p=dashboardProfitValue(r);if(Number.isFinite(p)){totalProfit+=p;profitUsable=true}});
+  const margin=profitUsable&&totalRevenue?totalProfit/totalRevenue:NaN,trendGran=detectPeriodGranularity()||"month",months=dashboardRowsByTrendGranularity();
+  const cat=dashboardGroup(rev,b.category),city=dashboardGroup(rev,b.city),product=dashboardGroup(rev,b.product).slice(0,10),sales=dashboardGroup(rev,b.salesperson).slice(0,12),payment=dashboardGroup(rev,b.payment);
+  let cards=[];
+  if(cap("monthly_revenue_trend"))cards.push(`<div class="dashboard-chart wide"><h3>${esc(trendGran[0].toUpperCase()+trendGran.slice(1))} Revenue Trend</h3><div class="chart-sub">Revenue aggregated at the detected professional reporting grain</div><div class="dash-canvas"><canvas id="dashRevenue"></canvas></div></div>`);
+  if(cap("monthly_profit_trend"))cards.push(`<div class="dashboard-chart wide"><h3>${esc(trendGran[0].toUpperCase()+trendGran.slice(1))} Profit Trend</h3><div class="chart-sub">Profit aggregated at the detected professional reporting grain</div><div class="dash-canvas"><canvas id="dashProfit"></canvas></div></div>`);
+  if(cap("category_performance"))cards.push(`<div class="dashboard-chart"><h3>Revenue by Category</h3><div class="chart-sub">${esc(humanize(b.category))}</div><div class="dash-canvas"><canvas id="dashCategory"></canvas></div></div>`);
+  if(cap("city_performance"))cards.push(`<div class="dashboard-chart"><h3>Revenue by City</h3><div class="chart-sub">${esc(humanize(b.city))}</div><div class="dash-canvas"><canvas id="dashCity"></canvas></div></div>`);
+  if(cap("top_10_products"))cards.push(`<div class="dashboard-chart"><h3>Top 10 Products</h3><div class="chart-sub">Top 10 products ranked by revenue</div><div class="dash-canvas tall"><canvas id="dashProducts"></canvas></div></div>`);
+  if(cap("salesperson_performance"))cards.push(`<div class="dashboard-chart"><h3>Salesperson Performance</h3><div class="chart-sub">Revenue by salesperson</div><div class="dash-canvas tall"><canvas id="dashSales"></canvas></div></div>`);
+  if(cap("payment_method_mix"))cards.push(`<div class="dashboard-chart"><h3>Revenue by Payment Method</h3><div class="chart-sub">${esc(humanize(b.payment))}</div><div class="dash-canvas"><canvas id="dashPayment"></canvas></div></div>`);
+  if(cap("profit_margin"))cards.push(`<div class="dashboard-chart"><h3>Profit Margin</h3><div class="chart-sub">Overall profit margin</div><div class="margin-summary"><div class="margin-value">${Number.isFinite(margin)?(margin*100).toFixed(1)+"%":"—"}</div><div class="margin-note">Profit ÷ Revenue</div></div></div>`);
+  host.innerHTML=`<div class="dashboard-head"><div><h2>Executive Business Dashboard</h2><p>Automatically generated from the uploaded dataset. Unsupported sections are omitted.</p></div></div><div class="dashboard-kpis">${cap("revenue_kpi")?`<div class="dashboard-kpi"><div class="dk-label">Revenue</div><div class="dk-value">${money(totalRevenue,rev)}</div><div class="dk-sub">${esc(humanize(rev))}</div></div>`:""}${cap("profit_kpi")?`<div class="dashboard-kpi"><div class="dk-label">Profit</div><div class="dk-value">${profitUsable?money(totalProfit,b.profit||rev):"—"}</div><div class="dk-sub">${profitUsable?"Profit column or revenue − cost":"Profit/cost columns"}</div></div>`:""}${rev?`<div class="dashboard-kpi"><div class="dk-label">Orders</div><div class="dk-value">${orders.toLocaleString()}</div><div class="dk-sub">${b.orderId?"Unique order IDs":"Records used as order count"}</div></div>`:""}${cap("avg_order_value")?`<div class="dashboard-kpi"><div class="dk-label">Avg Order Value</div><div class="dk-value">${Number.isFinite(avg)?money(avg,rev):"—"}</div><div class="dk-sub">Revenue ÷ orders</div></div>`:""}</div>${cards.length?`<div class="dashboard-chart-grid">${cards.join("")}</div>`:""}`;
+  // Use the same premium, local SVG renderer as the Graph Report. This keeps
+  // the executive dashboard visually consistent and removes CDN dependence.
+  const renderDashboardChart=(id,type,items,title)=>{
+    const canvas=document.getElementById(id);
+    if(!canvas||!items?.length)return;
+    renderGraphFallback(canvas,items.map(item=>({x:item.label??item.key,y:item.revenue??item.profit??item.value})),{type,x:"Dimension",y:title,title});
+  };
+  if(cap("monthly_revenue_trend")&&months.length)renderDashboardChart("dashRevenue","line",months,"Revenue");
+  if(cap("monthly_profit_trend")&&months.length)renderDashboardChart("dashProfit","line",months.map(x=>({...x,revenue:x.profit})),"Profit");
+  [["dashCategory",cat,"category_performance","bar","Revenue"],["dashCity",city,"city_performance","bar","Revenue"],["dashProducts",product,"top_10_products","bar","Revenue"],["dashSales",sales,"salesperson_performance","bar","Revenue"],["dashPayment",payment,"payment_method_mix","doughnut","Revenue"]].forEach(([id,data,key,type,title])=>{if(cap(key))renderDashboardChart(id,type,data,title);});
+}
+
+function build(){
+ info.biz=enhancedBusinessCandidates(); dateCol=dateColumn();
+ const localIssues=dataIssues();
+ info.issues={...localIssues,missing:Number(info.pythonQuality?.missing_cells ?? localIssues.missing),duplicateRows:Number(info.pythonQuality?.duplicate_rows ?? localIssues.duplicateRows)};
+ const dt=info.pythonAnalysis?.dataset_type||info.datasetType||{type:"General Analytics",confidence:"low"};
+ const dtValue=document.getElementById("datasetTypeValue"),dtNote=document.getElementById("datasetTypeNote");
+ if(dtValue)dtValue.textContent=dt.type||"General Analytics";
+ if(dtNote)dtNote.textContent=`Schema-driven classification · ${dt.confidence||"low"} confidence`; info.q=scoreQuality(info.issues); info.capabilities={...(info.pythonAnalysis?.capabilities||{}),...buildCapabilities()};
+ let ncols=numericCols(), cats=catCols(), ids=idCols(), stats=ncols.map(h=>{let a=vals(h);return{h,n:a.length,mean:mean(a),median:median(a),std:std(a),variance:variance(a),p10:percentile(a,.1),p25:percentile(a,.25),p50:percentile(a,.5),p75:percentile(a,.75),p90:percentile(a,.9),min:Math.min(...a),max:Math.max(...a),sum:sumCol(h),skew:skewness(a),kurt:kurtosis(a),cv:cv(a),ci:ci95(a),out:iqrStats(h)}});
+ let correlations=[];for(let i=0;i<ncols.length;i++)for(let j=i+1;j<ncols.length;j++){let p=pair(ncols[i],ncols[j]),c=corrPair(ncols[i],ncols[j]);if(Number.isFinite(c))correlations.push({a:ncols[i],b:ncols[j],c,n:p.length,cov:covPair(ncols[i],ncols[j])})}correlations.sort((a,b)=>Math.abs(b.c)-Math.abs(a.c));
+ let series=dateSeries(), b=info.biz, totalRevenue=b.revenue?sumCol(b.revenue):null,totalQty=b.quantity?sumCol(b.quantity):null;
+ let totalProfit=null;{let tp=0,profitUsable=false;rows.forEach(r=>{const pv=dashboardProfitValue(r);if(Number.isFinite(pv)){tp+=pv;profitUsable=true}});totalProfit=profitUsable?tp:null;}
+ let inconsistentCategories=cats.flatMap(h=>normalizedCategoryMap(h).map(([k,set])=>({h,k,values:[...set]})));
+ let ti=trendIntelligence(), rootDrivers=rootCauseEngine(), cross=crossDimensionAnalysis(), anomalies=anomalyEngine(), cleaningPlan=safeCleaningPlan();
+ let findings=[];
+ if(b.revenue&&rows.length)findings.push(`Total ${esc(humanize(b.revenue))} is <b>${money(totalRevenue,b.revenue)}</b> across ${Number(info.totalRecords||rows.length).toLocaleString()} records. Average per record is <b>${money(totalRevenue/Number(info.totalRecords||rows.length),b.revenue)}</b>.`);
+ if(b.quantity)findings.push(`Total ${esc(humanize(b.quantity))} is <b>${displayValue(totalQty,b.quantity)}</b>, averaging <b>${displayValue(totalQty/Number(info.totalRecords||rows.length),b.quantity)}</b> per record.`);
+ if(b.category&&b.revenue){let g=groupMetrics(b.category,b.revenue)[0];if(g)findings.push(`<b>${esc(g.key)}</b> is the highest-revenue ${humanize(b.category)} with <b>${money(g.total)}</b>, representing <b>${pct(g.total/totalRevenue)}</b> of total revenue.`)}
+ if(b.product&&b.revenue){let g=groupMetrics(b.product,b.revenue)[0];if(g)findings.push(`<b>${esc(g.key)}</b> is the highest-revenue product/item with <b>${money(g.total)}</b>.`)}
+ if(b.city&&b.revenue){let g=groupMetrics(b.city,b.revenue)[0];if(g)findings.push(`<b>${esc(g.key)}</b> is the highest-revenue location with <b>${money(g.total)}</b>.`)}
+ if(correlations[0])findings.push(`Strongest statistical relationship: <b>${humanize(correlations[0].a)}</b> ↔ <b>${humanize(correlations[0].b)}</b>, r = <b>${correlations[0].c.toFixed(3)}</b>. Correlation is association, not proof of causation.`);
+ if(info.issues.missing)findings.push(`<b>${info.issues.missing}</b> missing cells require review before modeling or sensitive reporting.`);
+ if(info.issues.duplicateRows)findings.push(`<b>${info.issues.duplicateRows}</b> duplicate rows were detected and could overstate aggregates.`);
+ rootCauseSummary().forEach(x=>findings.push(x));
+ rootDrivers.slice(0,3).forEach(x=>findings.push(x.text));
+ cross.slice(0,3).forEach(x=>findings.push(`<b>${esc(x.top.a)}</b> × <b>${esc(x.top.b)}</b> is the strongest detected cross-segment revenue combination at <b>${money(x.top.v)}</b> (${pct(x.share)} of total revenue).`));
+ anomalies.slice(0,3).forEach(x=>findings.push(`Anomalous revenue detected in <b>${esc(x.period)}</b>: <b>${money(x.sales)}</b> (${x.z>0?"above":"below"} the observed mean by ${Math.abs(x.z).toFixed(1)} standard deviations).`));
+ if(inconsistentCategories.length)findings.push(`<b>${inconsistentCategories.length}</b> categorical normalization issue(s) were detected where the same case-insensitive label appears in multiple forms.`);
+ if(!findings.length)findings.push("No material business finding could be inferred from the available field structure; the report contains the available statistical and quality diagnostics.");
+
+ let structure=renderTable(["Column","Role","Non-empty","Unique","Missing"],headers.map(h=>{let a=rows.map(r=>clean(r[h])).filter(Boolean);let miss=rows.length-a.length;return `<tr><td>${esc(h)}</td><td>${typeOf(h)}</td><td>${a.length}</td><td>${new Set(a).size}</td><td>${miss}</td></tr>`}));
+ let statsHtml=renderTable(["Column","Count","Sum","Mean","Median","Std Dev","Variance","P10","P25","P75","P90","Min","Max","Skew","Kurtosis","CV","95% CI Mean"],stats.map(s=>`<tr><td>${esc(humanize(s.h))}</td><td>${s.n}</td><td>${fmt(s.sum)}</td><td>${fmt(s.mean)}</td><td>${fmt(s.median)}</td><td>${fmt(s.std)}</td><td>${fmt(s.variance)}</td><td>${fmt(s.p10)}</td><td>${fmt(s.p25)}</td><td>${fmt(s.p75)}</td><td>${fmt(s.p90)}</td><td>${fmt(s.min)}</td><td>${fmt(s.max)}</td><td>${fmt(s.skew)}</td><td>${fmt(s.kurt)}</td><td>${pct(s.cv)}</td><td>${s.ci?fmt(s.ci[0])+" to "+fmt(s.ci[1]):"—"}</td></tr>`));
+ let corrHtml=correlations.length?renderTable(["Variable A","Variable B","Complete Pairs","Correlation","Strength"],correlations.slice(0,12).map(x=>`<tr><td>${esc(humanize(x.a))}</td><td>${esc(humanize(x.b))}</td><td>${x.n}</td><td>${x.c.toFixed(3)}</td><td>${Math.abs(x.c)>=.7?"Strong":Math.abs(x.c)>=.4?"Moderate":"Weak"}</td></tr>`)):'<div class="note">At least two suitable numeric measures are required.</div>';
+if(correlations.some(x=>x.n<15))corrHtml+=insight(`Small-sample caveat: one or more correlations are based on fewer than 15 complete pairs. Correlation strength may not be statistically reliable.`,"warn");
+ let covHtml=correlations.length?renderTable(["Variable A","Variable B","Complete Pairs","Covariance"],correlations.slice(0,12).map(x=>`<tr><td>${esc(x.a)}</td><td>${esc(x.b)}</td><td>${x.n}</td><td>${fmt(x.cov)}</td></tr>`)):'';
+ let catBusiness=(h,metric)=>{let g=groupMetrics(h,metric);return renderTable([h,"Records",metric?metric+" Total":"Count","Average","Share"],g.map(x=>`<tr><td>${esc(x.key)}</td><td>${x.count}</td><td>${metric?fmt(x.total):fmt(x.total)}</td><td>${fmt(x.avg)}</td><td>${metric&&totalRevenue?pct(x.total/totalRevenue):"—"}</td></tr>`))};
+ let businessBlocks="";
+ if(cap("category_performance"))businessBlocks+=`<div class="card"><h2>${humanize(b.category)} Performance</h2>${catBusiness(b.category,b.revenue)}</div>`;
+ if(cap("city_performance"))businessBlocks+=`<div class="card"><h2>${humanize(b.city)} Performance</h2>${catBusiness(b.city,b.revenue)}</div>`;
+ if(cap("top_10_products")){let pg=groupMetrics(b.product,b.revenue).slice(0,10);businessBlocks+=`<div class="card"><h2>${humanize(b.product)} Performance — Top 10</h2>${renderTable([b.product,"Records",b.revenue+" Total","Average","Share"],pg.map(x=>`<tr><td>${esc(x.key)}</td><td>${x.count}</td><td>${fmt(x.total)}</td><td>${fmt(x.avg)}</td><td>${pct(x.total/totalRevenue)}</td></tr>`))}</div>`;}
+ if(cap("payment_method_mix"))businessBlocks+=`<div class="card"><h2>${humanize(b.payment)} Mix</h2>${catBusiness(b.payment,b.revenue)}</div>`;
+ let outHtml=stats.length?renderTable(["Column","Q1","Q3","IQR","Expected Range","Potential Outliers","Outlier %"],stats.map(s=>`<tr><td>${esc(s.h)}</td><td>${fmt(s.out.q1)}</td><td>${fmt(s.out.q3)}</td><td>${fmt(s.out.iqr)}</td><td>${fmt(s.out.lo)} to ${fmt(s.out.hi)}</td><td>${s.out.out.length}</td><td>${pct(s.out.out.length/s.n)}</td></tr>`)):'';
+ let trendHtml="";
+ const trendInfo=trendIntelligence();
+ if(trendInfo&&trendInfo.s.length){
+   const first=trendInfo.s[0][1].sales,last=trendInfo.s[trendInfo.s.length-1][1].sales,change=first?((last-first)/first):NaN;
+   const max=trendInfo.s.reduce((a,b)=>b[1].sales>a[1].sales?b:a),min=trendInfo.s.reduce((a,b)=>b[1].sales<a[1].sales?b:a);
+   const gran=esc(trendInfo.granularity);
+   const pySpec=pythonTrendFor(trendInfo.metric);
+   const hasAdvanced=!!(pySpec&&pySpec.can_forecast&&pySpec.methods&&Object.keys(pySpec.methods).length);
+
+   // ---- Forecasting methods compared: Linear Trend, Holt's Exponential Smoothing, ARIMA(1,1,1) ----
+   let methodsHtml="",ciHtml="",sigHtml="";
+   if(hasAdvanced){
+     const order=["linear","holt","arima"];
+     const methodRows=order.filter(k=>pySpec.methods[k]).map(k=>{
+       const m=pySpec.methods[k],isBest=(k===pySpec.best_method);
+       const fVals=(m.forecast||[]).map(v=>money(v,pySpec.metric)).join(" · ")||"—";
+       const nameCell=isBest?`<span class="pill good">BEST FIT</span> ${esc(m.label)}`:esc(m.label);
+       return `<tr><td>${nameCell}</td><td>${Number.isFinite(m.aic)?fmt(m.aic):"—"}</td><td>${fVals}</td></tr>`;
+     });
+     methodsHtml=`<div class="card"><h2>Forecasting Methods Compared</h2>${renderTable(["Method","AIC (lower = better fit)",`Forecast (+1 / +2 / +3 ${trendInfo.granularity})`],methodRows)}<div class="method">Three independent models are fit to the observed series: a Linear Trend, Holt's Exponential Smoothing (double exponential smoothing with trend), and an ARIMA(1,1,1) model. The model with the lowest Akaike Information Criterion (AIC) is selected as the primary forecast — AIC rewards goodness of fit while penalizing unnecessary model complexity.</div></div>`;
+
+     const bestLabel=(pySpec.methods[pySpec.best_method]||{}).label||pySpec.best_method;
+     const ci80=pySpec.ci80||[],ci95=pySpec.ci95||[],forecastVals=pySpec.forecast||[];
+     const ciRows=forecastVals.map((v,i)=>{
+       const c80=ci80[i],c95=ci95[i];
+       return `<tr><td>+${i+1} ${gran}</td><td>${money(v,pySpec.metric)}</td><td>${c80?money(c80[0],pySpec.metric)+" to "+money(c80[1],pySpec.metric):"—"}</td><td>${c95?money(c95[0],pySpec.metric)+" to "+money(c95[1],pySpec.metric):"—"}</td></tr>`;
+     });
+     ciHtml=`<div class="card"><h2>Forecast — ${esc(bestLabel)}</h2>${ciRows.length?renderTable(["Forecast period","Point forecast","80% Confidence Interval","95% Confidence Interval"],ciRows):insight("Forecast requires at least 4 comparable observed periods.","warn")}<div class="method">The point forecast is the single most likely value under the selected model. Confidence intervals widen at longer horizons to reflect growing forecast uncertainty; the 95% interval is expected to contain the actual outcome in roughly 19 of every 20 cases if the underlying pattern holds.</div></div>`;
+
+     const p=pySpec.p_value;
+     let sig;
+     if(!Number.isFinite(p))sig={cls:"",label:"N/A",text:"Not enough observations to test significance."};
+     else if(p<0.01)sig={cls:"good",label:"SIGNIFICANT",text:`p = ${p.toFixed(4)} — the trend is statistically significant at the 99% confidence level.`};
+     else if(p<0.05)sig={cls:"good",label:"SIGNIFICANT",text:`p = ${p.toFixed(4)} — the trend is statistically significant at the 95% confidence level.`};
+     else if(p<0.10)sig={cls:"warn",label:"WEAK",text:`p = ${p.toFixed(4)} — only weakly significant at the 90% confidence level; treat the trend direction with caution.`};
+     else sig={cls:"warn",label:"NOT SIGNIFICANT",text:`p = ${p.toFixed(4)} — the observed trend cannot be statistically distinguished from random period-to-period variation.`};
+     sigHtml=`<div class="card"><h2>Statistical Significance</h2>${insight(`<span class="pill ${sig.cls}">${sig.label}</span> ${sig.text}`,sig.cls)}<div class="method">Significance is tested on the linear trend's slope using a two-tailed t-test (H₀: the slope is zero, i.e. no trend). A p-value below 0.05 indicates the trend is unlikely to be explained by random noise alone; it does not, by itself, guarantee the trend will continue.</div></div>`;
+   }
+
+   const forecastRows=trendInfo.forecast.length?renderTable(["Forecast period",`Projected ${humanize(trendInfo.metric)}`],trendInfo.forecast.map((v,i)=>`<tr><td>+${i+1} ${esc(trendInfo.granularity)}</td><td>${money(v,trendInfo.metric)}</td></tr>`)):insight("Forecast requires at least 4 comparable observed periods.","warn");
+
+   trendHtml=`<div class="three"><div class="card"><div class="small">Primary time-series metric</div><div class="metric" style="font-size:22px">${esc(trendInfo.metricLabel)}</div><div class="note">${trendInfo.s.length.toLocaleString()} comparable periods</div></div><div class="card"><div class="small">Trend</div><div class="metric" style="font-size:22px">${esc(trendInfo.trend)}</div><div class="note">slope ${fmt(trendInfo.reg?.slope||0)} per ${esc(trendInfo.granularity)} · R² ${fmt(trendInfo.reg?.r2||0)}</div></div><div class="card"><div class="small">First → last</div><div class="metric">${Number.isFinite(change)?pct(change):"—"}</div><div class="note">${esc(trendInfo.s[0][0])} → ${esc(trendInfo.s[trendInfo.s.length-1][0])}</div></div></div><div class="two"><div class="card"><h2>Observed ${esc(trendInfo.metricLabel)} Trend</h2>${renderTable(["Period","Observed value","Records"],trendInfo.s.map(([d,x])=>`<tr><td>${esc(d)}</td><td>${money(x.sales,trendInfo.metric)}</td><td>${x.orders}</td></tr>`))}</div>${hasAdvanced?ciHtml:`<div class="card"><h2>Forecast</h2>${forecastRows}</div>`}</div>${hasAdvanced?`<div style="margin-top:14px">${methodsHtml}</div><div style="margin-top:14px">${sigHtml}</div>`:""}<div class="two" style="margin-top:14px"><div class="card"><h2>Highest observed period</h2>${insight(`${esc(max[0])}: <b>${money(max[1].sales,trendInfo.metric)}</b>`)}</div><div class="card"><h2>Lowest observed period</h2>${insight(`${esc(min[0])}: <b>${money(min[1].sales,trendInfo.metric)}</b>`)}</div></div>`;
+ }else trendHtml='<div class="card"><div class="note">No usable date/period + numeric metric combination was detected, so time-series analysis was not generated.</div></div>';
+
+ let qb=qualityBreakdown();
+ let qualityRows=[
+  ["Completeness",pct(qb.completeness),"Missing-cell proportion"],
+  ["Validity",pct(qb.validity),"Date and numeric-rule checks"],
+  ["Consistency",pct(qb.consistency),"Whitespace/format consistency"],
+  ["Uniqueness",pct(qb.uniqueness),"Duplicate-row diagnostic"],
+  ["Missing cells",info.issues.missing,info.issues.missing?"Review / clean":"None detected"],
+  ["Exact duplicate rows",info.issues.duplicateRows,info.issues.duplicateRows?"Review before aggregation":"None detected"],
+  ["Invalid dates",info.issues.invalidDates,info.issues.invalidDates?"Correct date values":"None detected"],
+  ["Negative quantities",info.issues.negativeQty,info.issues.negativeQty?"Investigate":"None detected"],
+  ["Negative financial values",info.issues.negativeMoney,info.issues.negativeMoney?"Investigate":"None detected"],
+  ["Whitespace issues",info.issues.whitespace,info.issues.whitespace?"Normalize text":"None detected"],
+  ["Large period-to-period changes",info.issues.timeChangeWarnings?.length||0,info.issues.timeChangeWarnings?.length?"Possible unit change or reporting inconsistency — review":"None detected"],
+  ["Empty rows",info.issues.emptyRows,info.issues.emptyRows?"Remove / review":"None detected"]
+ ];
+ let qualityHtml=renderTable(["Check","Count","Action"],qualityRows.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td>${x[2]}</td></tr>`));
+
+ let cleanSuggestions=[];
+ if(info.issues.missing)cleanSuggestions.push("Fill or explicitly handle missing values according to the business meaning of each column; do not blindly replace all values.");
+ if(info.issues.duplicateRows)cleanSuggestions.push("Review duplicate records before aggregation; preserve the original file and create a cleaned copy if changes are approved.");
+ if(info.issues.whitespace)cleanSuggestions.push("Trim leading/trailing whitespace and standardize categorical labels.");
+ if(info.issues.invalidDates)cleanSuggestions.push("Normalize invalid date values before time-series reporting.");
+ if(info.issues.negativeQty)cleanSuggestions.push("Validate negative quantities against returns/refunds rules before changing them.");
+ if(info.issues.negativeMoney)cleanSuggestions.push("Validate negative financial values against refunds, credits or chargebacks.");
+ let hasCleanIssues=cleanSuggestions.length>0;
+ if(!cleanSuggestions.length)cleanSuggestions.push("No automatic cleaning is required based on the detected quality rules. Continue monitoring source-data quality.");
+ let recs=[];
+ if(b.revenue)recs.push(`Track <b>${esc(humanize(b.revenue))}</b> as the primary value KPI; current total is <b>${money(totalRevenue,b.revenue)}</b> across ${Number(info.totalRecords||rows.length).toLocaleString()} records.`);
+ if(ti&&ti.best&&ti.worst){
+   recs.push(`Investigate the largest observed period-to-period increase of <b>${pct(ti.best.change)}</b> in <b>${esc(ti.best.period)}</b> and the largest decline of <b>${pct(ti.worst.change)}</b> in <b>${esc(ti.worst.period)}</b>.`);
+ }
+ if(b.category&&b.revenue){let g=groupMetrics(b.category,b.revenue)[0];if(g)recs.push(`Prioritize the <b>${esc(humanize(b.category))}</b> segment <b>${esc(g.key)}</b>, which contributes <b>${pct(g.total/totalRevenue)}</b> of observed value.`);}
+ if(b.product&&b.revenue){let g=groupMetrics(b.product,b.revenue)[0];if(g)recs.push(`Review the highest-value product/item <b>${esc(g.key)}</b> and compare its volume and value contribution before changing assortment or pricing.`);}
+ if(b.city&&b.revenue){let g=groupMetrics(b.city,b.revenue)[0];if(g)recs.push(`Review <b>${esc(g.key)}</b> as the leading location by observed value at <b>${money(g.total,b.revenue)}</b>.`);}
+ if(b.profit&&b.revenue)recs.push(`Monitor <b>${esc(humanize(b.profit))}</b> alongside <b>${esc(humanize(b.revenue))}</b> so growth is evaluated for quality, not just scale.`);
+ if(correlations[0])recs.push(`Treat the strongest relationship between <b>${esc(humanize(correlations[0].a))}</b> and <b>${esc(humanize(correlations[0].b))}</b> (r=${correlations[0].c.toFixed(3)}) as an association; the sample size is n=${correlations[0].n}.`);
+ if(info.issues.timeChangeWarnings?.length)recs.push(`Validate ${info.issues.timeChangeWarnings.length} large period-to-period change(s) before using the affected series for forecasting; these may reflect unit changes or reporting inconsistencies.`);
+ let hasRecs=recs.length>0;
+ if(!recs.length)recs.push("No dataset-specific business recommendation could be supported from the detected fields; use the statistical diagnostics as a technical review.");
+
+
+ info.deck={
+  fileName,rowCount:Number(info.totalRecords||rows.length),colCount:headers.length,quality:info.q,
+  ncols,cats,ids,b,totalRevenue,totalQty,totalProfit,datasetType:dt,stats,correlations,qb,
+  findings,recs,cleanSuggestions,cleaningPlan,inconsistentCategories,
+  categoryPerf:b.category?groupMetrics(b.category,b.revenue||null):null,
+  productPerf:b.product?groupMetrics(b.product,b.revenue||null):null,
+  cityPerf:b.city?groupMetrics(b.city,b.revenue||null):null,
+  paymentPerf:b.payment?groupMetrics(b.payment,b.revenue||null):null,
+  series,ti,pySpec:ti?pythonTrendFor(ti.metric):null,rootDrivers,cross,anomalies,graphs:info.graphs||[],timeChangeWarnings:info.issues.timeChangeWarnings||[]
+ };
+ info.deck.consistencyHash=JSON.stringify({
+   kpis:{revenue:b.revenue?totalRevenue:null,quantity:b.quantity?totalQty:null,quality:info.q},
+   graphs:(info.graphs||[]).map(g=>({title:g.title,x:g.x,y:g.y,type:g.type})),
+   warnings:info.issues.timeChangeWarnings||[]
+ });
+
+
+ report.innerHTML=`
+ <div class="head"><div><h1>Professional Data Analysis Report</h1><div class="meta"><b>${esc(fileName)}</b> · ${Number(info.totalRecords||rows.length).toLocaleString()} rows · ${headers.length} columns · generated locally</div></div><div class="actions no-print"><button id="pptBtn" class="btn secondary" onclick="generatePresentation()">Export as Presentation</button><button class="btn secondary" onclick="window.print()">Print / Save PDF</button><button class="btn" onclick="location.reload()">Analyze Another File</button></div></div>
+ <div class="status"><b>Analysis complete.</b> The Python engine analyzed the complete dataset. <span class="fast-mode">FAST MODE</span>${info.rowsArePreview?` Browser calculations use a ${Number(info.previewRows||0).toLocaleString()}-row preview to keep the interface responsive; server-side statistics, quality checks, correlations and forecasts use all rows.`:""} Identifiers are excluded from statistical/business metrics where detected. No source values are modified.</div>
+ <div id="executiveDashboard" class="exec-dashboard"></div>
+ <div id="datasetIntelligence" class="section"><div class="card"><div class="small">Detected dataset type</div><div id="datasetTypeValue" class="metric" style="font-size:22px">Analyzing…</div><div id="datasetTypeNote" class="note">Schema-driven classification</div></div></div>
+ <div class="grid">
+  <div class="card kpi"><div class="label">Records</div><div class="value">${Number(info.totalRecords||rows.length).toLocaleString()}</div><div class="sub">${info.rowsArePreview?"full dataset analyzed · browser preview "+Number(info.previewRows||0).toLocaleString():"rows analyzed"}</div></div>
+  <div class="card kpi"><div class="label">Fields</div><div class="value">${headers.length}</div><div class="sub">${ncols.length} numeric · ${cats.length} categorical · ${ids.length} identifiers</div></div>
+  <div class="card kpi"><div class="label">Data quality</div><div class="value">${info.q.toFixed(1)}%</div><div class="sub">quality diagnostic score</div></div>
+  <div class="card kpi"><div class="label">${b.revenue?humanize(b.revenue):"Primary metric"}</div><div class="value">${b.revenue?money(totalRevenue):"Not detected"}</div><div class="sub">${b.revenue?"total observed value":"define a business measure"}</div></div>
+ </div>
+ <div class="section"><h2>Executive Summary</h2><div class="card">${findings.map(x=>insight(x)).join("")}</div></div>
+ ${(info.graphs&&info.graphs.length)?`<div class="section"><h2>Graph Report</h2><div id="graphReportGrid" class="graph-report-grid"></div></div>`:""}
+ <div class="section two"><div class="card"><h2>Dataset Structure & Roles</h2>${structure}</div><div class="card"><h2>Data Quality Diagnostics</h2><p class="note">Score: <b>${info.q.toFixed(1)}%</b>. This is a diagnostic score, not a guarantee of correctness.</p>${qualityHtml}</div></div>
+ ${(info.issues.timeChangeWarnings||[]).length?`<div class="section"><h2>Sanity & Consistency Warnings</h2><div class="card">${info.issues.timeChangeWarnings.slice(0,20).map(w=>insight(`<b>${esc(humanize(w.column))}</b>: ${displayValue(w.from,w.column)} → ${displayValue(w.to,w.column)} (${w.isRate?`${w.points>=0?"+":""}${w.points.toFixed(1)} pts`:`${w.change>=0?"+":""}${pct(w.change)}`}) at ${esc(w.period)}. Possible unit change or reporting inconsistency; review before forecasting.`,"warn")).join("")}</div></div>`:""}
+ <div class="section"><h2>Business KPI Snapshot</h2><div class="grid">
+  <div class="card kpi"><div class="label">Total ${b.revenue?humanize(b.revenue):"Revenue"}</div><div class="value">${b.revenue?money(totalRevenue):"—"}</div><div class="sub">${b.revenue?"sum of valid numeric values":"not detected"}</div></div>
+  <div class="card kpi"><div class="label">Average per record</div><div class="value">${b.revenue?money(totalRevenue/Number(info.totalRecords||rows.length)):"—"}</div><div class="sub">average transaction/record value</div></div>
+  <div class="card kpi"><div class="label">Total units</div><div class="value">${b.quantity?fmt(totalQty):"—"}</div><div class="sub">${b.quantity?esc(humanize(b.quantity)):"quantity field not detected"}</div></div>
+  <div class="card kpi"><div class="label">Avg unit price</div><div class="value">${b.price?money(mean(vals(b.price))):"—"}</div><div class="sub">${b.price?esc(humanize(b.price)):"price field not detected"}</div></div>
+ </div></div>
+ ${(hasCleanIssues||inconsistentCategories.length)?`<div class="section"><h2>Cleaning & Normalization Preview</h2><div class="card">
+ <div class="method">No source values are changed automatically. The following are safe, reviewable transformations the system can propose.</div>
+ ${hasCleanIssues?cleanSuggestions.map(x=>insight(esc(x))).join(""):""}
+ ${inconsistentCategories.slice(0,12).map(x=>insight(`In <b>${esc(x.h)}</b>, equivalent labels appear as: <b>${x.values.map(esc).join(", ")}</b>. Standardize only after business confirmation.`,"warn")).join("")}
+ </div></div>`:""}
+ ${section("descriptive_statistics","Descriptive Statistics",`<div class="card">${statsHtml}<div class="method">Statistics use sample standard deviation/variance (n−1) and linear-interpolated percentiles. Identifier fields are excluded from this section.</div></div>`)}
+ ${(cap("correlation")||cap("covariance"))?`<div class="section two">${cap("correlation")?`<div class="card"><h2>Correlation</h2>${corrHtml}</div>`:""}${cap("covariance")?`<div class="card"><h2>Covariance</h2>${covHtml}</div>`:""}</div>`:""}
+ ${businessBlocks?`<div class="section"><h2>Business Performance Analysis</h2><div class="two">${businessBlocks}</div></div>`:""}
+ ${section("time_series","Time-Series Analysis",trendHtml)}
+ <div class="section"><h2>Outlier & Distribution Review</h2><div class="card">${outHtml}<div class="method">Potential outliers use the 1.5×IQR rule. An outlier is a review flag, not an instruction to delete data.</div></div></div>
+ ${(hasCleanIssues||hasRecs)?`<div class="section ${hasCleanIssues&&hasRecs?"two":""}">${hasCleanIssues?`<div class="card"><h2>Cleaning & Validation Recommendations</h2>${cleanSuggestions.map(x=>insight(esc(x),"")).join("")}</div>`:""}${hasRecs?`<div class="card"><h2>Business Recommendations</h2>${recs.map(x=>insight(x)).join("")}</div>`:""}</div>`:""}
+ <div class="section"><h2>Executive Intelligence & Decision Support</h2>
+ ${(rootDrivers.length||cross.length)?`<div class="grid">${rootDrivers.length?`<div class="card"><h2>Root-Cause Drivers</h2>${rootDrivers.slice(0,5).map(x=>insight(x.text)).join("")}</div>`:""}${cross.length?`<div class="card"><h2>Cross-Dimensional Findings</h2>${cross.slice(0,5).map(x=>insight(`<b>${esc(x.top.a)}</b> × <b>${esc(x.top.b)}</b>: ${money(x.top.v)} (${pct(x.share)} of revenue)`)).join("")}</div>`:""}</div>`:""}
+ ${b.revenue?`<div class="two" style="margin-top:14px"><div class="card"><h2>Revenue What-If</h2><div class="note">Simple proportional scenario using the detected revenue metric. It does not claim causation. See the Time-Series Analysis section above for the statistical (ARIMA / exponential smoothing) forecast.</div><div style="display:flex;gap:8px;margin-top:12px"><input id="whatIfPct" type="number" value="5" step="1" style="width:120px;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--text)"><button class="btn" onclick="runWhatIf()">Run Scenario</button></div><div id="whatIfResult" style="margin-top:12px"></div></div></div>`:""}
+ ${anomalies.length?`<div class="two" style="margin-top:14px"><div class="card"><h2>Anomaly Intelligence</h2>${anomalies.slice(0,6).map(x=>insight(`${esc(x.period)}: ${money(x.sales)} · z=${x.z.toFixed(2)}`,"warn")).join("")}</div><div class="card"><h2>Semantic Data Model</h2>${headers.map(h=>`<div class="small" style="margin:6px 0"><b>${esc(h)}</b> → ${esc(semanticRole(h))}</div>`).join("")}</div></div>`:`<div class="card" style="margin-top:14px"><h2>Semantic Data Model</h2>${headers.map(h=>`<div class="small" style="margin:6px 0"><b>${esc(h)}</b> → ${esc(semanticRole(h))}</div>`).join("")}</div>`}
+ </div>
+ ${cleaningPlan.length?`<div class="section"><h2>Cleaning Workflow</h2><div class="card"><div class="method">The original dataset is never silently changed. Safe transformations are previewed separately; ambiguous changes remain review-only.</div>${renderTable(["Action","Detected count","Classification"],cleaningPlan.map(x=>`<tr><td>${esc(x.label)}</td><td>${x.count}</td><td>${x.type==="safe"?"Safe preview":"Requires review"}</td></tr>`))}<div class="actions no-print" style="margin-top:12px"><button class="btn secondary" onclick="downloadCleanedCSV()">Download Cleaned CSV</button></div></div></div>`:""}
+<div class="section"><h2>Methodology & Limitations</h2><div class="card method">This report is generated locally from the uploaded worksheet. It uses deterministic local semantic role detection, descriptive statistics, pairwise-complete correlations/covariance, IQR and time-series anomaly checks, cross-dimensional grouping, trend regression, scenario analysis, cleaning previews and quality diagnostics. Forecasts are only shown when enough comparable time periods exist; scenario analysis is explicitly proportional and not causal. Identifier columns are treated as IDs when their names and values strongly indicate that role. Correlation does not establish causation. Automated quality checks cannot determine business intent, so flagged values require domain review. No source data is silently modified.</div></div>
+ `;
+ home.classList.add("hide");report.classList.remove("hide");window.scrollTo(0,0);setTimeout(()=>{renderExecutiveDashboard();renderSelectedGraphs();},20);
+}
+
+function showGraphQuestion(){
+ let old=document.getElementById('graphQuestion');old?.remove();
+ let modal=document.createElement('div');modal.id='graphQuestion';modal.className='graph-modal';modal.innerHTML=`<div class="graph-box" style="max-width:650px;text-align:center"><div class="icon">▥</div><h2>Do you want graphs in your report?</h2><p class="graph-note">Ledgerline can create charts from the columns in your uploaded file. You can choose the graph type and exact columns yourself.</p><div class="choice-row"><div class="choice" onclick="document.getElementById('graphQuestion').remove();info.graphs=[];build()"><strong>No, continue without graphs</strong><span class="graph-note">Create the normal analysis report.</span></div><div class="choice" onclick="document.getElementById('graphQuestion').remove();graphBuilder()"><strong>Yes, add graphs</strong><span class="graph-note">Choose one or more graphs and their columns.</span></div></div></div>`;document.body.appendChild(modal);
+}
+async function load(file){
+  try{
+    fileName=file.name;
+    const form=new FormData();
+    form.append("file",file);
+
+    // The frontend is served by FastAPI itself. Using a relative API path
+    // means upload requests always go to the same server that served this page.
+    // This avoids file:// browser restrictions and hard-coded localhost issues.
+    const API_BASE=(window.EXCELMIND_API_BASE || (window.location.protocol === "file:" ? "http://127.0.0.1:8000" : window.location.origin)).replace(/\/$/,"");
+    const endpoint=API_BASE+"/api/analyze";
+
+    let response;
+    try{
+      response=await fetch(endpoint,{
+        method:"POST",
+        body:form,
+        headers:{"Accept":"application/json"}
+      });
+    }catch(networkError){
+      let hint="Backend se connection nahi ho saka.";
+      try{
+        const h=await fetch(API_BASE+"/api/health",{method:"GET",cache:"no-store"});
+        if(h.ok){
+          hint="Backend chal raha hai, lekin upload request mein problem hai. Please server CMD mein latest app.py chal raha hai ya nahi check karein.";
+        }
+      }catch(_){
+        hint="ExcelMind backend available nahi hai. start_excelmind.bat se server start karein aur website http://127.0.0.1:8000 se open karein.";
+      }
+      throw new Error(hint);
+    }
+
+    if(!response.ok){
+      let msg="Python analysis failed";
+      try{
+        const body=await response.json();
+        msg=body.detail||msg;
+      }catch(_){}
+      throw new Error(msg);
+    }
+
+    const a=await response.json();
+
+    // Performance mode: Python analyzes the COMPLETE dataset, while the browser
+    // receives only a small preview. This avoids huge JSON parsing and repeated
+    // 100k-row JavaScript scans that used to make the UI feel slow.
+    info.totalRecords=Number(a.records)||0;
+    info.previewRows=Number(a.preview_rows)||Number(a.rows?.length)||0;
+    info.fullDatasetAnalyzed=Boolean(a.capabilities?.full_dataset_analyzed);
+    info.rowsArePreview=Boolean(a.rows_are_preview);
+
+    // Python backend has successfully analyzed the file.
+    // Feed the returned source rows into the existing UI renderer.
+    headers=(a.columns||[]).map(c=>c.name);
+    rows=a.rows||[];
+    selectedGraphs=[];
+    dateCol=a.time_column||null;
+
+    // Keep the Python result available to the report/presentation layer.
+    info.pythonAnalysis=a;
+    info.biz=a.business_roles||{};
+    info.pythonQuality=a.quality||{};
+    info.pythonStats=a.statistics||{};
+    info.pythonCorrelations=a.correlations||[];
+    info.pythonInsights=a.insights||[];
+    info.pythonRecommendations=a.recommendations||[];
+    info.pythonTrendSpecs=a.trend_specs||[];
+    info.pythonGraphData=a.graph_data||{};
+    info.capabilities=a.capabilities||{};
+    info.datasetType=a.dataset_type||{type:"General Analytics",confidence:"low"};
+
+    // Show the backend classification immediately instead of leaving the placeholder visible.
+    const typeValue=document.getElementById("datasetTypeValue");
+    const typeNote=document.getElementById("datasetTypeNote");
+    if(typeValue) typeValue.textContent=info.datasetType.type||"General Analytics";
+    if(typeNote) typeNote.textContent=`Schema-driven classification · ${info.datasetType.confidence||"low"} confidence`;
+
+    // The backend validates the original uploaded values. Preserve that count so
+    // the frontend cannot turn display-only nulls into false missing-cell warnings.
+    info.issues={...(info.issues||{}),missing:Number(a.quality?.missing_cells||0),duplicateRows:Number(a.quality?.duplicate_rows||0)};
+
+    // Backend-selected charts become the initial recommended graph set.
+    // The existing graph chooser remains available so the user can remove or add charts.
+    selectedGraphs=(a.graph_specs||[]).map(g=>({type:g.type,x:g.x,y:g.y,title:humanize(g.y),titleSource:g.y}));
+
+    showGraphQuestion();
+  }catch(e){
+    console.error(e);
+    alert("Could not analyze this file: "+(e.message||e));
+  }
+}
+fileInput.addEventListener("change",e=>{if(e.target.files[0])load(e.target.files[0]);e.target.value=""});
+drop.addEventListener("dragover",e=>{e.preventDefault();drop.classList.add("drag")});
+drop.addEventListener("dragleave",()=>drop.classList.remove("drag"));
+drop.addEventListener("drop",e=>{e.preventDefault();drop.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0])});
+</script>
+
+</body></html>
